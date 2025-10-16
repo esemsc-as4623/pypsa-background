@@ -1,16 +1,5 @@
 # Tags
 #pypsa #marine #europe #mathematics
-
-# Useful Links
-Open energy platform: https://openenergyplatform.org
-Open energy modelling initiative: https://openmod-initiative.org
-UK Department for Business, Energy, & Industrial Strategy: https://my2050.energysecurity.gov.uk/
-Mackay Carbon Calculator: https://mackaycarboncalculator.energysecurity.gov.uk/
-Electricity Demand: https://github.com/open-energy-transition/Awesome-Electricity-Demand?tab=readme-ov-file#europe
-Map Your Grid: https://mapyourgrid.org
-Energy Transition Model: https://www.energytransitionmodel.com
-Our World in Data (Renewable Energy): https://ourworldindata.org/renewable-energy
-U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/publications/doe-oe-resources/eshb
 # Literature
 
 | Reference                   | Title                                                                                                                                                                                                                                                 | Year |
@@ -28,8 +17,6 @@ U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/pu
 | [[Chang et al., 2021]]      | Trends in tools and approaches for modelling the energy transition<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0306261921002476)                                                                                                 | 2021 |
 | [[Gissey et al., 2019]]     | Value of energy storage aggregation to the electricity system<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0301421519300655?via%3Dihub)                                                                                           | 2019 |
 |                             |                                                                                                                                                                                                                                                       |      |
-
-
 # Definitions
 - ***model predictive control*** = control algorithm that utilizes model predictions to optimize performance through model prediction, rolling optimization, and feedback correction, allowing for effective management of uncertainties in dynamic systems
 - methodologies
@@ -66,3 +53,14 @@ U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/pu
 - Anthony Papavasiliou (OR)
 - Tom Brown, TU Berlin (PyPSA)
 - Fabian Nuemann, TU Berlin (PyPSA)
+
+# Useful Links
+- Open energy platform: https://openenergyplatform.org
+- Open energy modelling initiative: https://openmod-initiative.org
+- UK Department for Business, Energy, & Industrial Strategy: https://my2050.energysecurity.gov.uk/
+- Mackay Carbon Calculator: https://mackaycarboncalculator.energysecurity.gov.uk/
+- Electricity Demand: https://github.com/open-energy-transition/Awesome-Electricity-Demand?tab=readme-ov-file#europe
+- Map Your Grid: https://mapyourgrid.org
+- Energy Transition Model: https://www.energytransitionmodel.com
+- Our World in Data (Renewable Energy): https://ourworldindata.org/renewable-energy
+- U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/publications/doe-oe-resources/eshb

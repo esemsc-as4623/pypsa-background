@@ -92,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -242,11 +242,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "f3f2ea5a7caed5dc",
+  "active": "41009a7e34cc70e5",
   "lastOpenFiles": [
+    "Model Formulation.md",
     "Master.md",
     "Miscellaneous.md",
-    "Model Formulation.md",
     "Research Avenues.md",
     "Hoffmann et al., 2024.md",
     "Meeting Minutes.md",
