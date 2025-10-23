@@ -157,6 +157,7 @@ $$
 		Generator / storage dispatch $g_{i,s,t}$ cannot exceed availability $G_{i,s,t} * G_{i,s}$ made up of per unit availability $0 \le G_{i,s,t} \le 1$ multiplied by the capacity $G_{i,s}$
 		Capacity is bounded by the installable potential $\hat{G}_{i,s}$ $$ 0 \le g_{i,s,t} \le G_{i,s,t} * G_{i,s} \le G_{i,s} \le \hat{G}_{i,s}$$
 3. Storage consistency
+		u
 4. Kirchhoff's Laws for Physical Flow
 5. Transmission line thermal limits
 6. Global constraints on $CO_2$ and transmission volumes

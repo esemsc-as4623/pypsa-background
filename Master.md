@@ -16,7 +16,7 @@
 | [[McCollum et al., 2020]]   | Energy modellers should explore extremes more systematically in scenarios<br><br>[link](https://www.nature.com/articles/s41560-020-0555-3)                                                                                                            | 2020 |
 | [[Chang et al., 2021]]      | Trends in tools and approaches for modelling the energy transition<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0306261921002476)                                                                                                 | 2021 |
 | [[Gissey et al., 2019]]     | Value of energy storage aggregation to the electricity system<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0301421519300655?via%3Dihub)                                                                                           | 2019 |
-|                             |                                                                                                                                                                                                                                                       |      |
+| [[Brown et al., 2018]]      | Synergies of sector coupling and transmission reinforcement in cost-optimised, highly renewable European energy system<br><br>[link](https://www.sciencedirect.com/science/article/pii/S036054421831288X?via%3Dihub)                                  | 2018 |
 # Definitions
 - ***model predictive control*** = control algorithm that utilizes model predictions to optimize performance through model prediction, rolling optimization, and feedback correction, allowing for effective management of uncertainties in dynamic systems
 - methodologies
