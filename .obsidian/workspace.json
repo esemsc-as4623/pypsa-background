@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -214,16 +214,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "1ee5e8ba568f8784",
+  "active": "f13f26fdf5b99800",
   "lastOpenFiles": [
+    "Open Source Solvers.md",
     "Search Terms.md",
     "Master.md",
-    "Hoffmann et al., 2024.md",
+    "Miscellaneous.md",
     "Frysztacki et al., 2021.md",
+    "Hoffmann et al., 2024.md",
     "Mao et al., 2024.md",
     "Moksnes and Usher, 2023.md",
     "Model Formulation.md",
-    "Miscellaneous.md",
     "Research Avenues.md",
     "Meeting Minutes.md",
     "2025-10-01.md",

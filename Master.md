@@ -67,3 +67,4 @@
 - Energy Transition Model: https://www.energytransitionmodel.com
 - Our World in Data (Renewable Energy): https://ourworldindata.org/renewable-energy
 - U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/publications/doe-oe-resources/eshb
+- Open energy benchmark: https://openenergybenchmark.org/
