@@ -1,4 +1,4 @@
-#pypsa #europe #mathematics
+#pypsa #europe #mathematics #optimiztion
 
 https://www.sciencedirect.com/science/article/pii/S2666792424000283?via%3Dihub
 
@@ -252,5 +252,40 @@ extensions
 	- overestimates total annualized system costs by averaging out most profitable generation sites with high potential for capacity expansion
 - temporal aggregation
 - investment pathway coupling
-	- uncoupled investment periods = parallelization 
-	- myopic foresight method = 
+	- uncoupled investment periods = parallelization of each investment period
+	- myopic foresight method = series of brownfield analyses in succession
+	- backcasting = solve target system, define boundary conditions in last investment period, recursively repeat until first investment period is optimized
+	- rolling-horizon = one optimization for two investment periods; design choices fixed for the first period in each pair; subsequent period re-evaluated in next run
+	- all-at-once = consider entire horizon at once (perfect foresight)
+	- investment inefficiencies; expensive, sub-optimal solutions
+- decompose time / space / technology
+	- sort variables and constraints by chosen dimension
+	- model sparsity = opportunity for decomposition
+	- master problem defines cost coefficients for sub-problems
+	- sub-problems consist of problems with modified objective functions
+	- sub-problems solved in parallel
+	- solutions can be infeasible, feasible and suboptimal, or optimal
+	- master problem adjusted until optimality criterion is met
+- optimization limitations
+	- technical
+		- real systems face uncertain future demand; optimization frameworks have perfect information
+		- rule-based energy management systems still more widely used b/c of low data requirement and simplicity
+	- financial
+		- optimization neglects some stakeholders and trade options b/w them
+		- agent based models
+			- autonomous decision-making entities
+			- bottom-up energy system optimization
+			- sub-model to account for market principles
+		- bi-level programming
+			- integration multiple agents into models with single hard-coupled optimization
+			- optimization problem of one or many agents as side constraints for another
+			- nested optimization = MILP with Karush-Kuhn-Tucker conditions
+			- e.g. model interaction of price-setters and price-takers (Stackelberg pricing games)
+	- environmental
+		- $CO_2$ emissions, recycling, LCA, material flows
+		- energy systems interact with the environment on many levels, direct and indirect
+		- large-scale capacity expansion can cause feedback effects on micro-climates (e.g. wakes)
+	- social
+		- fairness, social acceptance, behavioral adaptation, political uncertainty
+		- affordability, disproportionate benefits
+		- subsidization schemes

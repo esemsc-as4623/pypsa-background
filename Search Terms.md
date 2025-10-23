@@ -1,0 +1,12 @@
+- energy system modelling &
+	- PyPSA
+	- agent-based models
+	- bi-level programming
+	- transformation pathways
+	- stochastic scenarios
+	- spatial resolution
+	- temporal resolution
+	- mixed-integer linear optimization
+	- renewables
+	- storage
+- network-based energy flow optimization
