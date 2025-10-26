@@ -10,6 +10,6 @@
 - TU Berlin Data Science for ESM: https://fneum.github.io/data-science-for-esm/intro.html
 - Operations Research: https://ap-rg.eu/courses/operations-research-linma-2491/
 - Mixed Integer Programming: https://www.youtube.com/@mixedintegerprogramming/videos [[Mixed Integer Programming Notes]]
+- Optimization4All: https://optimization4all.com/ [[Open Source Solvers]]
 ## Research
 - [[Information Retrieval]]
-- 
