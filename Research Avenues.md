@@ -22,7 +22,7 @@
 	- easy but never comprehensive
 - multi-criteria analysis
 	- include multiple dimensions in the objective function, solve model with different weights
-	- still prone to modelling artefacts
+	- still prone to modelling artifacts
 - modelling to generate alternatives
 	- re-solve a model to get a different solution within some additional bounds
 	- elegant but requires substantial effort to implement
@@ -31,7 +31,7 @@
 # Criticisms of Energy Transition Models
 - energy transitions are to complex to model
 	- technologies
-	- interdependencies
+	- inter-dependencies
 	- actors
 	- institutions
 - future is full of uncertainties; modelling creates a false impression that we know what may happen

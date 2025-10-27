@@ -1,9 +1,26 @@
-- energy system modelling PyPSA
-- agent based energy system models
+## Models
+- energy system modelling
+- PyPSA
+- agent-based energy system models
+- energy transmission, generation, storage network design
 - bi-level programming optimization energy systems
-- energy system transformation pathways
+- modelling renewables and energy storage
+
+## Scenario
+- modelling energy transformation pathways
 - stochastic scenarios uncertainty energy system modelling
-- energy system model resolution
-- energy system model mixed-integer linear optimization
-- renewables storage energy system
-- network-based energy flow optimization
+- modelling to generate alternativess
+- monte carlo simulation parametric uncertainty
+
+## Resolution
+- spatiotemporal resolution of energy system models
+- consequences of clustering in power flow simulations
+
+## Math
+- network-based optimization
+- reinforcement learning in graph networks
+- stochastic dual dynamic programming in graph networks
+- heurisitc optimization of networkss
+- mixed-integer optimization network flow
+- partial equilibrium with integer problems
+- covariance matrix adaption evolution strategy
