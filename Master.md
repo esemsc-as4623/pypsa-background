@@ -1,5 +1,5 @@
 # Tags
-#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimiztion #renewables #storage #mga 
+#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimization #renewables #storage #mga 
 # Literature
 [x] = good resource
 

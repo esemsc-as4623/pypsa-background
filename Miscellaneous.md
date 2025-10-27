@@ -12,4 +12,5 @@
 - Mixed Integer Programming: https://www.youtube.com/@mixedintegerprogramming/videos [[Mixed Integer Programming Notes]]
 - Optimization4All: https://optimization4all.com/ [[Open Source Solvers]]
 ## Research
-- [[Information Retrieval]]
+- [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
+- [[Information Retrieval]]: sources and guidance from Imperial workshop

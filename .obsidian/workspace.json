@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ccb09764fcdcee51",
+            "id": "5dfd04db33b4357a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "DeCarolis, 2011.md",
+                "file": "McCollum et al., 2020.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "DeCarolis, 2011"
+              "title": "McCollum et al., 2020"
+            }
+          },
+          {
+            "id": "7f402dec56bc604e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Master.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Master"
             }
           }
         ]
@@ -171,16 +185,17 @@
       "bases:Create new base": false
     }
   },
-  "active": "ccb09764fcdcee51",
+  "active": "5dfd04db33b4357a",
   "lastOpenFiles": [
     "Master.md",
     "DeCarolis, 2011.md",
+    "McCollum et al., 2020.md",
+    "Miscellaneous.md",
     "Research Avenues.md",
     "Unnewehr et al., 2022.md",
     "Frysztacki et al., 2021.md",
     "Ringkjøb et al., 2018.md",
     "Mao et al., 2024.md",
-    "Miscellaneous.md",
     "Search Terms.md",
     "Open Source Solvers.md",
     "Moksnes and Usher, 2023.md",

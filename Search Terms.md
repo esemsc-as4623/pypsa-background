@@ -10,7 +10,7 @@
 - modelling energy transformation pathways
 - stochastic scenarios uncertainty energy system modelling
 - modelling to generate alternativess
-- monte carlo simulation parametric uncertainty
+- monte carlo simulation parametric uncertainy
 
 ## Resolution
 - spatiotemporal resolution of energy system models
