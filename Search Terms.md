@@ -20,7 +20,7 @@
 - network-based optimization
 - reinforcement learning in graph networks
 - stochastic dual dynamic programming in graph networks
-- heurisitc optimization of networkss
+- heurisitc optimization of networks
 - mixed-integer optimization network flow
 - partial equilibrium with integer problems
 - covariance matrix adaption evolution strategy
