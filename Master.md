@@ -25,7 +25,7 @@
 	- ***equilibrium*** = determine the system as a result of interacting balanced components (cannot be validated)
 	- ***simulation*** = determine the system given some rules (often bottom-up)
 - uncertainty
-	- ***deterministic optimization*** (perfect foresight) = all future states (exogenous parameters) are known at the beggining of the model horizon
+	- ***deterministic optimization*** (perfect foresight) = all future states (exogenous parameters) are known at the beginning of the model horizon
 	- ***stochastic optimization*** = all future states along an uncertainty tree are known, including probabilities of each branch
 	- ***myopic optimization*** (rolling horizon) = decisions in period *y* are taken under some assumptions about the future; move to period *y+1* and repeat, with possibly altered assumptions about subsequent periods (*y+2, ...*)
 - event categories

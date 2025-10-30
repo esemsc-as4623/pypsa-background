@@ -4,25 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2ec18c78077500f1",
+        "id": "002dcc45847380d5",
         "type": "tabs",
         "children": [
           {
-            "id": "5dfd04db33b4357a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "McCollum et al., 2020.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "McCollum et al., 2020"
-            }
-          },
-          {
-            "id": "7f402dec56bc604e",
+            "id": "7eca63f08b6d1337",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -185,14 +171,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "5dfd04db33b4357a",
+  "active": "7eca63f08b6d1337",
   "lastOpenFiles": [
+    "McCollum et al., 2020.md",
+    "Unnewehr et al., 2022.md",
     "Master.md",
     "DeCarolis, 2011.md",
-    "McCollum et al., 2020.md",
     "Miscellaneous.md",
     "Research Avenues.md",
-    "Unnewehr et al., 2022.md",
     "Frysztacki et al., 2021.md",
     "Ringkjøb et al., 2018.md",
     "Mao et al., 2024.md",
