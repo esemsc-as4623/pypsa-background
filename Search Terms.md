@@ -23,4 +23,4 @@
 - heurisitc optimization of networks
 - mixed-integer optimization network flow
 - partial equilibrium with integer problems
-- covariance matrix adaption evolution strategy
+- covariance matrix adaptation evolution strategy
