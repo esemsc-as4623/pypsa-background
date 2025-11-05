@@ -1,5 +1,5 @@
 # Tags
-#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimization #renewables #storage #mga 
+#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimization #renewables #storage #mga #gnn 
 # Literature
 [x] = good resource
 
@@ -14,6 +14,7 @@
 | [[Ringkjøb et al., 2018]]          | A review of modelling tools for energy and electricity systems with large shares of variable renewables                                                                                                              | 2018 |
 | [[Unnewehr et al., 2022]]<br>[x]   | The value of network resolution -- A validation study of the European energy system model PyPSA-Eur                                                                                                                  | 2022 |
 | [[DeCarolis, 2011]]<br>[x]         | Using modelling to generate alternatives (MGA) to expand our thinking on energy futures                                                                                                                              | 2011 |
+| [[Varbella et al., 2024]]          | PowerGraph: a power grid benchmark dataset for graph neural networks                                                                                                                                                 | 2024 |
 | [[McCollum et al., 2020]]          | Energy modellers should explore extremes more systematically in scenarios<br><br>[link](https://www.nature.com/articles/s41560-020-0555-3)                                                                           | 2020 |
 | [[Chang et al., 2021]]             | Trends in tools and approaches for modelling the energy transition<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0306261921002476)                                                                | 2021 |
 | [[Gissey et al., 2019]]            | Value of energy storage aggregation to the electricity system<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0301421519300655?via%3Dihub)                                                          | 2019 |
@@ -67,3 +68,4 @@
 - Our World in Data (Renewable Energy): https://ourworldindata.org/renewable-energy
 - U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/publications/doe-oe-resources/eshb
 - Open energy benchmark: https://openenergybenchmark.org/
+- Energy System Catapult: https://es.catapult.org.uk/

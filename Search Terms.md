@@ -24,3 +24,4 @@
 - mixed-integer optimization network flow
 - partial equilibrium with integer problems
 - covariance matrix adaptation evolution strategy
+- non-linear solvers for optimal power flow problems
