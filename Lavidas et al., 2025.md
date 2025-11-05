@@ -29,3 +29,6 @@ generators in this study
 - floating wind
 - tidal energy
 - floating solar
+
+BUT higher resolution dataset is from a fundamentally different numerical model?
+- different resolution AND physics = staggering differences

@@ -4,21 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "91495ffce2d56e7e",
+        "id": "d66eda3d9e52edd4",
         "type": "tabs",
         "children": [
           {
-            "id": "8758f63e9fb15577",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
-            "id": "b74b91c8f0c05967",
+            "id": "ae5d18f5428dd584",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -31,8 +21,7 @@
               "title": "Varbella et al., 2024"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "5a4ce16a22619b28",
@@ -182,35 +170,35 @@
       "bases:Create new base": false
     }
   },
-  "active": "b74b91c8f0c05967",
+  "active": "ae5d18f5428dd584",
   "lastOpenFiles": [
-    "Varbella et al., 2024.md",
     "Master.md",
-    "Search Terms.md",
+    "Mao et al., 2024.md",
+    "Unnewehr et al., 2022.md",
+    "Frysztacki et al., 2021.md",
+    "2025-11-05.md",
+    "Hoffmann et al., 2024.md",
+    "Meeting Minutes.md",
+    "2021-10-30.md",
+    "Research Avenues.md",
+    "Lavidas et al., 2025.md",
+    "Moksnes and Usher, 2023.md",
     "2025-10-30.md",
+    "Varbella et al., 2024.md",
+    "Search Terms.md",
     "McCollum et al., 2020.md",
     "DeCarolis, 2011.md",
-    "Unnewehr et al., 2022.md",
     "Miscellaneous.md",
-    "Research Avenues.md",
-    "Frysztacki et al., 2021.md",
     "Ringkjøb et al., 2018.md",
-    "Mao et al., 2024.md",
     "Open Source Solvers.md",
-    "Moksnes and Usher, 2023.md",
     "2025-10-26.md",
     "Untitled.canvas",
     "Mixed Integer Programming Notes.md",
     "Research Summaries.md",
     "Information Retrieval.md",
-    "Hoffmann et al., 2024.md",
     "Model Formulation.md",
-    "Meeting Minutes.md",
     "2025-10-01.md",
     "2025-09-17.md",
-    "2025-10-07.md",
-    "Lavidas et al., 2025.md",
-    "Groissboeck, 2019.md",
     "Untitled.base",
     "2025-09-17",
     "Untitled 1.base"

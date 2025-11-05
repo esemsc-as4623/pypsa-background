@@ -1,4 +1,4 @@
-#pypsa #europe #mathematics #optimiztion
+#pypsa #europe #mathematics #optimization 
 
 https://www.sciencedirect.com/science/article/pii/S2666792424000283?via%3Dihub
 

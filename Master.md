@@ -1,5 +1,5 @@
 # Tags
-#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimization #renewables #storage #mga #gnn 
+#pypsa #marine #europe #mathematics #osemosys #deeplearning #optimization #renewables #storage #mga #gnn #benchmark 
 # Literature
 [x] = good resource
 
@@ -15,6 +15,8 @@
 | [[Unnewehr et al., 2022]]<br>[x]   | The value of network resolution -- A validation study of the European energy system model PyPSA-Eur                                                                                                                  | 2022 |
 | [[DeCarolis, 2011]]<br>[x]         | Using modelling to generate alternatives (MGA) to expand our thinking on energy futures                                                                                                                              | 2011 |
 | [[Varbella et al., 2024]]          | PowerGraph: a power grid benchmark dataset for graph neural networks                                                                                                                                                 | 2024 |
+| [[Pfenninger et al., 2014]]        | Energy systems modeling for twenty-first century energy challenges<br><br>[link](https://www.sciencedirect.com/science/article/pii/S1364032114000872)                                                                | 2014 |
+| [[Giarola et al., 2022]]           | MUSE: An open-source agent-based integrated assessment modelling framework<br><br>[link](https://www.sciencedirect.com/science/article/pii/S2211467X22001584)                                                        | 2022 |
 | [[McCollum et al., 2020]]          | Energy modellers should explore extremes more systematically in scenarios<br><br>[link](https://www.nature.com/articles/s41560-020-0555-3)                                                                           | 2020 |
 | [[Chang et al., 2021]]             | Trends in tools and approaches for modelling the energy transition<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0306261921002476)                                                                | 2021 |
 | [[Gissey et al., 2019]]            | Value of energy storage aggregation to the electricity system<br><br>[link](https://www.sciencedirect.com/science/article/pii/S0301421519300655?via%3Dihub)                                                          | 2019 |
@@ -38,10 +40,11 @@
 - ***merit order dispatch rule*** = in order of increasing variable cost, assigns technologies to load blocks of decreasing duration until either all load blocks are satisfied or all generating capacity is exhausted
 
 # Conferences
-| Conference      | Date             | Location        | Notes                                                                                                        |
-| --------------- | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| ABM4Energy 2026 | 30-31 March 2026 | Vienna, Austria | Agent-Based Modelling for Energy Economics and Energy Policy<br>https://events.hifis.net/event/2964/overview |
-|                 |                  |                 |                                                                                                              |
+| Conference                      | Date               | Location        | Notes                                                                                                                                                          |
+| ------------------------------- | ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ABM4Energy 2026                 | 30-31 March 2026   | Vienna, Austria | Agent-Based Modelling for Energy Economics and Energy Policy<br>https://events.hifis.net/event/2964/overview                                                   |
+| Geilo Winter School x NAIC 2026 | 18-23 January 2026 | Geilo, Norway   | Uncertainty Quantification for Scientific Computing Intelligent Systems<br>https://www.sintef.no/projectweb/geilowinterschool/2026-uncertainty-quantification/ |
+| EGU2026                         | 3-8 May 2026       | Vienna, Austria | European Geosciences Union<br>https://www.egu26.eu/                                                                                                            |
 
 # Companies
 - Resources for the Future -- think tank in Washington DC

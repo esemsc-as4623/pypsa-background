@@ -1,4 +1,4 @@
-#gnn 
+#gnn #deeplearning
 
 Dataset: https://figshare.com/articles/dataset/PowerGraph/22820534
 Code: https://github.com/PowerGraph-Datasets
