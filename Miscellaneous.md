@@ -14,3 +14,5 @@
 ## Research
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
+## AI General
+- [[Karpathy Decade of Agents]]
