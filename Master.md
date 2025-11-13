@@ -58,8 +58,10 @@
 - Natsuo Kishimoto (Open Software)
 - Anthony Papavasiliou (OR)
 - Tom Brown, TU Berlin (PyPSA)
-- Fabian Nuemann, TU Berlin (PyPSA)
+- Fabian Neumann, TU Berlin (PyPSA)
 - Joseph DeCarolis (U.S. Energy Information Administration)
+- Maximilian Parzen (Open Energy Transition)
+- Siddarth Krishna (Open Energy Transition)
 
 # Useful Links
 - Open energy platform: https://openenergyplatform.org
