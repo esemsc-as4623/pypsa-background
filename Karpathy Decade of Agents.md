@@ -32,7 +32,7 @@ RL
 	- LLM will always find adversarial examples that the model generalizes as top quality
 - can we meta-learn it to some extent?
 	- some papers have cool ideas
-	- to do it convincingly, we need it on the scale of a LLM lab
+	- to do it convincingly, we need it on the scale of a frontier LLM lab
 
 Pretraining VS In-Context Learning
 - pretraining = next token predictor over the internet
@@ -64,7 +64,7 @@ Transformers
 - still training with gradient descient and backpropagation
 - transformers were not around
 - everything now is just bigger
-- recreate Yann LeCunn's 1989 algorithm now; halve the training time
+- recreate Yann LeCun's 1989 algorithm now; halve the training time
 
 Nano Chat
 - simplest repository to build a ChatGPT clone end-to-end
@@ -125,13 +125,13 @@ Reflection
 Model Collapse
 - naive approaches
 	- regularization for entropy
-		- want more solutions / alternatives but don't want a new language to be created
+		- want more solutions / alternatives but don't want to drift too much
 		- tuning this parameter is not trivial
 	- more diverse input samples
 - most tasks we want don't demand diversity
 	- difficult to evaluate (often actively penalized)
-	- but we need it for other functions
-- GPT-OSS-20B > GPT-5?
+	- but we need it for synthetic data generation
+- GPT-OSS-20B > GPT-4?
 - training data is the internet, which is terrible
 	- usually the data is garbage
 	- WSJ articles and high-tier content is rare
@@ -139,4 +139,51 @@ Model Collapse
 	- then train a smaller model on quality data
 	- practically speaking you still want the model to retain some knowledge
 	- basic curriculum but not esoteric knowledge
-- 
+	- somehow at scale, some of the noise from the bad data washes away
+
+Charting progress to AGI
+- y-axis
+	- education level
+	- horizon length
+- AGI = computer performs any economically valuable task at human performance or better
+- society will refactor what tasks encompass jobs
+- new interfaces that allow you to manage imperfect AIs with closed scope
+	- e.g. call center: 1 person served, 1 database altered, no other context
+- if humans become the orchestrator, the wage goes up because of experience requirement
+- code is amenable to AI
+	- you can see diffs (c.f. PPT slides)
+	- less entropy than free text
+- superintelligence = extrapolation of current automation of tasks
+- gradual loss of control and understanding of what's happening under the hood
+- culture = the idea of passing down information
+	- simple case: can an LLM maintain a scratch pad of ideas?
+	- advanced case: can an LLM write a book for other LLMs that shocks or surprises them?
+- multi-agent view
+	- can one LLM learn to create problems for another to solve that increase in complexity?
+	- LLM collaboration is inhibited by the missing cognition
+
+Large demo-to-product gap
+- cost of failure is high
+	- self-driving --> accidents
+	- software --> security breach
+- unimpressed by demos
+- better if they can be interacted with
+
+Eureka = starfleet academy for frontier technology
+- with few questions, a tutor can probe around the student's world view
+- learner was the only constraint to learning
+- the bar is so high and the capability is not there
+- it might not be the best time to build this
+- physics uniquely boots up the brain
+	- models
+	- abstractions
+	- fundamental frequencies
+	- first order approximations
+	- second, third order error terms
+	- approximate as a sphere
+	- scaling laws
+- tangle of understanding but lay it out as a ramp where the next step is only dependent on the previous
+- trade-off between breadth wise (trust me, you'll need it later) and depth wise (reward) learning
+- if I don't understand something, I can't explain it
+
+Read: Nick Lane
