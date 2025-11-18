@@ -50,6 +50,8 @@
 # Companies
 - Resources for the Future -- think tank in Washington DC
 - International Institute for Applied Systems Analysis (IIASA)
+- Agora Energiewende
+- d-fine (Management Consulting)
 
 # People
 - Daniel Huppmann, TU Wien
@@ -61,7 +63,6 @@
 - Fabian Neumann, TU Berlin (PyPSA)
 - Joseph DeCarolis (U.S. Energy Information Administration)
 - Maximilian Parzen (Open Energy Transition)
-- Siddarth Krishna (Open Energy Transition)
 
 # Useful Links
 - Open energy platform: https://openenergyplatform.org

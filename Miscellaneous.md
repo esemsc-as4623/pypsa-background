@@ -23,4 +23,4 @@ design choice = the way in which the code has been implemented by the developers
 config choice = how the model can be initialized / set up by the user
 - what are the best practices?
 
-- [[PyPSA Implementation]]
+- [[PyPSA-EUR Outputs]]
