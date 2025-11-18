@@ -4,39 +4,67 @@
     "type": "split",
     "children": [
       {
-        "id": "af86570a388c54e8",
+        "id": "6ccca975f95ea939",
         "type": "tabs",
         "children": [
           {
-            "id": "9b86c58e22772017",
+            "id": "f4f9a2fb3fcfaac5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PyPSA/PyPSA-EUR Outputs.md",
+                "file": "Miscellaneous.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PyPSA-EUR Outputs"
+              "title": "Miscellaneous"
             }
           },
           {
-            "id": "fcec5227325d3970",
+            "id": "b8f465d1a3a5ea29",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PyPSA/PyPSA-EUR Tests.md",
+                "file": "PyPSA/PyPSA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PyPSA-EUR Tests"
+              "title": "PyPSA"
+            }
+          },
+          {
+            "id": "322e0b6129618b4b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Misc/Information Retrieval.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Information Retrieval"
+            }
+          },
+          {
+            "id": "1dfde54220739a89",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PyPSA/PyPSA-EUR.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PyPSA-EUR"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -184,15 +212,26 @@
       "bases:Create new base": false
     }
   },
-  "active": "fcec5227325d3970",
+  "active": "1dfde54220739a89",
   "lastOpenFiles": [
-    "PyPSA/PyPSA-EUR Outputs.md",
-    "PyPSA/PyPSA-EUR Tests.md",
-    "Master.md",
+    "PyPSA/PyPSA.md",
+    "Miscellaneous.md",
+    "Misc/Mixed Integer Programming Notes.md",
+    "Misc/Open Source Solvers.md",
+    "Misc/Karpathy Decade of Agents.md",
+    "Misc/Information Retrieval.md",
+    "Model Formulation.md",
     "Research Avenues.md",
+    "Search Terms.md",
+    "Misc",
+    "Meetings/2025-11-05.md",
+    "Meeting Minutes.md",
+    "PyPSA/PyPSA-EUR.md",
+    "PyPSA/PyPSA-EUR Tests.md",
+    "PyPSA/PyPSA-EUR Outputs.md",
+    "Master.md",
     "Meetings/2025-09-17.md",
     "Meetings",
-    "Miscellaneous.md",
     "Lit/Groissboeck, 2019.md",
     "Lit/DeCarolis, 2011.md",
     "Lit/McCollum et al., 2020.md",
@@ -202,19 +241,9 @@
     "Lit",
     "PyPSA Design/Config Choices.md",
     "PyPSA",
-    "Karpathy Decade of Agents.md",
     "Meetings/2025-11-06.md",
     "Lit/Varbella et al., 2024.md",
     "Lit/Unnewehr et al., 2022.md",
-    "Lit/Frysztacki et al., 2021.md",
-    "Meetings/2025-11-05.md",
-    "Lit/Hoffmann et al., 2024.md",
-    "Meeting Minutes.md",
-    "2021-10-30.md",
-    "Lit/Moksnes and Usher, 2023.md",
-    "Meetings/2025-10-30.md",
-    "Search Terms.md",
-    "Ringkjøb et al., 2018.md",
     "Untitled.canvas",
     "Untitled.base",
     "2025-09-17",

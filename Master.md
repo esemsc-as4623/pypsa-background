@@ -52,6 +52,8 @@
 - International Institute for Applied Systems Analysis (IIASA)
 - Agora Energiewende
 - d-fine (Management Consulting)
+- Fraunhofer IEG (Research Institution for Energy Infrastructures and Geotechnologies)
+- Fraunhofer IEE (Institute for Energy Economics and Energy System Technology)
 
 # People
 - Daniel Huppmann, TU Wien
