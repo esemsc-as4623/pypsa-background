@@ -53,3 +53,5 @@
 		- select a portfolio of demand-side actions to maximize profit under limits on available flexibility resources
 
 A unified approach to mixed-integer optimization: non-linear formulations and scalable algorithms
+
+#incomplete 

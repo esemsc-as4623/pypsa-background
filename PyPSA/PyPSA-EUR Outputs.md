@@ -14,6 +14,10 @@ output: base_s_6_elec_.nc
 | economic analysis                       | - n.objective (total annual system cost)<br>- n.buses_t.marginal_price (electricity prices by region and hour)<br>- n.generators.marginal_cost (operating cost by technology)<br>- n.lines.capital_cost (transmission investment costs) | - cost-effectiveness<br>- price volatility<br>- regional price differences                                           |
 | environmental performance               | - annual emissions = (n.generators_t.p * n.generators.carrier.map(emission_factors)).sum()<br>- renewable_share = renewables_generation / total_generation<br>- capacity_factors = n.generators_t.p.mean() / n.generators.p_nom_opt     | - system $CO_2$ footprint<br>- renewable penetration<br>resource utilization                                         |
 | impact of dynamic line rating           | - n.lines_t.s_max_py (time varying transmission capacities)<br>- utilization_rates = n.lines_t.p0.abs() / (n.lines.s_nom_opt * n.lines_t.s_max_pu)                                                                                      | - weather-based capacity management<br>- congestion patterns<br>- economic benefit of dynamic VS static line ratings |
+design choice = the way in which the code has been implemented by the developers
+- can limit the degree of complexity that is able to be modelled
+config choice = how the model can be initialized / set up by the user
+- what are the best practices?
 
 | File                                   | Design Choices                                                                                                       | Config Choices                                                                                                                                                                                                                                |
 | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -30,3 +34,4 @@ output: base_s_6_elec_.nc
 | `prepare_network.py`                   |                                                                                                                      |                                                                                                                                                                                                                                               |
 | `solve_network.py`                     |                                                                                                                      |                                                                                                                                                                                                                                               |
 
+#incomplete 
