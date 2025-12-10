@@ -5,7 +5,7 @@
 	- Command line for scientific computing: https://github.com/ImperialCollegeLondon/RCDS-comm-line
 	- SWE for Researchers: https://imperialcollegelondon.github.io/grad_school_software_engineering_course/
 	- OOP in Python: https://github.com/ImperialCollegeLondon/RCDS-object-oriented-python
-	- Profiling and optimization in Python: https://github.com/ImperialCollegeLondon/RCDS-profiling-and-optimisation-in-python
+	- Profiling and optimization in Python: [[Profiling and Optimization in Python Notes]]
 	- Intro to containers: https://github.com/ImperialCollegeLondon/RCDS-intro-to-containers
 - TU Berlin Data Science for ESM: https://fneum.github.io/data-science-for-esm/intro.html
 - Operations Research: https://ap-rg.eu/courses/operations-research-linma-2491/
@@ -15,6 +15,5 @@
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
 - [[IBM Research]]: potential internship on AI Solvers for Constrained Non-Convex Optimization
-- [[Profiling and Optimization in Python]]: writing fast code in Python
 ## AI General
 - [[Karpathy Decade of Agents]]
