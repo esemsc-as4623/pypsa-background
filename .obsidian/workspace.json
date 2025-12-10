@@ -4,38 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "bf5b540af3d3b42c",
+        "id": "d4a37ac5d8f64eed",
         "type": "tabs",
         "children": [
           {
-            "id": "4209aab1a8f23486",
+            "id": "ba95a464a6b28e32",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PyPSA/PyPSA-EUR Tests.md",
+                "file": "Misc/Profiling and Optimization in Python.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PyPSA-EUR Tests"
+              "title": "Profiling and Optimization in Python"
             }
           },
           {
-            "id": "98e720a9a967395d",
+            "id": "449d6caf50f283f7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lit/DeCarolis, 2011.md",
+                "file": "Meetings/2025-12-10.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "DeCarolis, 2011"
+              "title": "2025-12-10"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -92,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 283.5
   },
   "right": {
     "id": "5a4ce16a22619b28",
@@ -183,36 +184,36 @@
       "bases:Create new base": false
     }
   },
-  "active": "4209aab1a8f23486",
+  "active": "449d6caf50f283f7",
   "lastOpenFiles": [
-    "PyPSA/PyPSA-EUR Outputs.md",
-    "PyPSA/PyPSA-EUR Tests.md",
-    "PyPSA/PyPSA.md",
-    "PyPSA/PyPSA-EUR.md",
-    "PyPSA/PyPSA vs OSeMOSYS.md",
-    "Master.md",
-    "Lit/Pennock et al., 2023.md",
-    "Lit/Unnewehr et al., 2022.md",
-    "Lit/Varbella et al., 2024.md",
     "Meetings/2025-11-19.md",
-    "Misc/Information Retrieval.md",
-    "Misc/Karpathy Decade of Agents.md",
-    "Misc/Mixed Integer Programming Notes.md",
-    "Misc/Open Source Solvers.md",
-    "EVOLVE.md",
+    "Master.md",
+    "Meetings/2025-12-10.md",
+    "Lit/Frysztacki et al., 2021.md",
+    "Lit/DeCarolis, 2011.md",
     "Miscellaneous.md",
     "Model Formulation.md",
     "Research Avenues.md",
     "Search Terms.md",
-    "Lit/DeCarolis, 2011.md",
+    "Misc/Information Retrieval.md",
+    "Misc/Karpathy Decade of Agents.md",
+    "Misc/Mixed Integer Programming Notes.md",
+    "Misc/Open Source Solvers.md",
+    "Misc/Profiling and Optimization in Python.md",
+    "Energy System Catapult - Evaluation Framework.md",
+    "EVOLVE.md",
+    "IBM Research.md",
+    "Meetings/2025-11-05.md",
+    "Meetings/2025-10-30.md",
+    "Meetings/2025-10-07.md",
     "Meetings/2025-11-06.md",
     "Meetings/2025-10-01.md",
-    "Meetings/2025-11-05.md",
-    "Misc",
-    "Meeting Minutes.md",
     "Meetings/2025-09-17.md",
+    "PyPSA/PyPSA vs OSeMOSYS.md",
+    "PyPSA/PyPSA-EUR.md",
+    "PyPSA/PyPSA-EUR Tests.md",
+    "Misc",
     "Meetings",
-    "Lit/Groissboeck, 2019.md",
     "Lit",
     "PyPSA",
     "Untitled.canvas",

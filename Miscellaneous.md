@@ -14,5 +14,7 @@
 ## Research
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
+- [[IBM Research]]: potential internship on AI Solvers for Constrained Non-Convex Optimization
+- [[Profiling and Optimization in Python]]: writing fast code in Python
 ## AI General
 - [[Karpathy Decade of Agents]]
