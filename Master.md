@@ -15,7 +15,8 @@
 | [[Unnewehr et al., 2022]]<br>[x]   | The value of network resolution -- A validation study of the European energy system model PyPSA-Eur                                                                                                                  | 2022 |
 | [[DeCarolis, 2011]]<br>[x]         | Using modelling to generate alternatives (MGA) to expand our thinking on energy futures                                                                                                                              | 2011 |
 | [[Varbella et al., 2024]]          | PowerGraph: a power grid benchmark dataset for graph neural networks                                                                                                                                                 | 2024 |
-| [[Pennock et al., 2023]]           | A modelling framework to quantify the power system benefits from ocean energy deployments                                                                                                                            | 2023 |
+| [[Pennock et al., 2023]]<br>[x]    | A modelling framework to quantify the power system benefits from ocean energy deployments                                                                                                                            | 2023 |
+| [[Craig et al., 2022]]             | Overcoming the disconnect between energy system and climate modelling                                                                                                                                                | 2022 |
 | [[Pfenninger et al., 2014]]        | Energy systems modeling for twenty-first century energy challenges<br><br>[link](https://www.sciencedirect.com/science/article/pii/S1364032114000872)                                                                | 2014 |
 | [[Giarola et al., 2022]]           | MUSE: An open-source agent-based integrated assessment modelling framework<br><br>[link](https://www.sciencedirect.com/science/article/pii/S2211467X22001584)                                                        | 2022 |
 | [[McCollum et al., 2020]]          | Energy modellers should explore extremes more systematically in scenarios<br><br>[link](https://www.nature.com/articles/s41560-020-0555-3)                                                                           | 2020 |
@@ -68,6 +69,8 @@
 - Joseph DeCarolis, U.S. Energy Information Administration
 - Maximilian Parzen, Open Energy Transition
 - Jesse Jenkins, Princeton (ZERO Lab)
+- Chris Dent, University of Edinburgh (Climate + ESMs)
+- Inès Tunga (Energy Systems Catapult)
 
 # Useful Links
 - Open energy platform: https://openenergyplatform.org

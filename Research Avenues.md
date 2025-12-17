@@ -9,7 +9,8 @@
 - parameter uncertainty
 	- how much confidence can you have on input assumptions?
 - model horizon, temporal / spatial disaggregation
-	- what is the intended scope of analysis? end-of-horizon effect?
+	- what is the intended scope of analysis?
+	- end-of-horizon effect?
 - model simplifications for numerical tractability and comprehensibility
 	- what are the appropriate trade-offs between high level of detail vs big picture?
 	- assumption or result?
