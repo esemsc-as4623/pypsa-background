@@ -57,6 +57,7 @@
 - Fraunhofer IEG (Research Institution for Energy Infrastructures and Geotechnologies)
 - Fraunhofer IEE (Institute for Energy Economics and Energy System Technology)
 - TransitionZero
+- IBM Research
 
 # People
 - Daniel Huppmann, TU Wien
@@ -84,3 +85,4 @@
 - U.S. Department of Energy Energy Storage Handbook: https://www.sandia.gov/ess/publications/doe-oe-resources/eshb
 - Open energy benchmark: https://openenergybenchmark.org/
 - Energy System Catapult: https://es.catapult.org.uk/
+- Terravolt: https://app.terravolt.co.uk/index.html

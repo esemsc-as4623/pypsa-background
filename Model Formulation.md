@@ -161,3 +161,5 @@ $$
 4. Kirchhoff's Laws for Physical Flow
 5. Transmission line thermal limits
 6. Global constraints on $CO_2$ and transmission volumes
+
+#incomplete 

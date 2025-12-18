@@ -5,6 +5,7 @@
 ### Comparisons
 [[PyPSA vs OSeMOSYS]]
 
+### Status Update
 (https://forum.openmod.org/t/your-opinion-on-current-open-models/692/4)
 - PyPSA cannot perform optimization over multiple time horizons (c.f. OSeMOSYS, IKARUS, TIMES)
 	- also a limitation for Oemof and Calliope
