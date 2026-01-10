@@ -11,10 +11,14 @@
             "id": "dcfddbf1c5891615",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Meetings/2025-09-17.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025-09-17"
             }
           }
         ]
@@ -74,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "5a4ce16a22619b28",
@@ -168,10 +171,17 @@
   },
   "active": "dcfddbf1c5891615",
   "lastOpenFiles": [
-    "PyPSA/PyPSA vs OSeMOSYS.md",
+    "Misc/Agentic Project Management.md",
+    "Misc/Information Retrieval.md",
+    "Misc/Miscellaneous.md",
+    "Misc/Karpathy Decade of Agents.md",
+    "Misc/Profiling and Optimization in Python Notes.md",
+    "Agentic Project Management.md",
+    "Misc/Search Terms.md",
     "PyPSA/PyPSA.md",
-    "EVOLVE.md",
+    "PyPSA/PyPSA vs OSeMOSYS.md",
     "Master.md",
+    "EVOLVE.md",
     "Energy System Catapult - Evaluation Framework.md",
     "Research Avenues.md",
     "Model Formulation.md",
@@ -179,21 +189,14 @@
     "Meetings/2025-12-10.md",
     "Lit/Pennock et al., 2023.md",
     "Meetings/2025-11-19.md",
-    "Misc/Profiling and Optimization in Python Notes.md",
     "Lit/DeCarolis, 2011.md",
-    "Misc/Miscellaneous.md",
     "Misc/Mixed Integer Programming Notes.md",
-    "Misc/Information Retrieval.md",
-    "Misc/Karpathy Decade of Agents.md",
     "Misc/Open Source Solvers.md",
     "PyPSA/PyPSA-EUR.md",
     "PyPSA/PyPSA-EUR Tests.md",
     "PyPSA/PyPSA-EUR Outputs.md",
-    "Misc/Search Terms.md",
     "Lit/Moksnes and Usher, 2023.md",
     "Lit/McCollum et al., 2020.md",
-    "Lit/Unnewehr et al., 2022.md",
-    "Lit/Varbella et al., 2024.md",
     "Untitled.canvas",
     "Misc",
     "Meetings",
