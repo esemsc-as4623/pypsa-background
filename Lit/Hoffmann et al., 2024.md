@@ -1,4 +1,4 @@
-#pypsa #europe #mathematics #optimization 
+#pypsa #europe #mathematics #optimization #osemosys 
 
 https://www.sciencedirect.com/science/article/pii/S2666792424000283?via%3Dihub
 

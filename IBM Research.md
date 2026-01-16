@@ -13,3 +13,5 @@ My resume contains all my relevant work achievements. But I personally think the
 
 3. **How did you find out about this career opportunity?**
 LinkedIn. I was reading up on what is new in earth observation and came across Benedikt Blumenstiel's new publication on TerraMind. Then I saw that he reposted Thomas Brunschwiler's announcement about this opportunity.
+
+Update 2025-12-17: Didn't get it :(
