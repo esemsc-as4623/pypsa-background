@@ -15,5 +15,6 @@
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
 - [[IBM Research]]: potential internship on AI Solvers for Constrained Non-Convex Optimization
-## AI General
+## General / Random
 - [[Karpathy Decade of Agents]]
+- [[Algorithms to Live By]]
