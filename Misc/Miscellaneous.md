@@ -18,3 +18,4 @@
 ## General / Random
 - [[Karpathy Decade of Agents]]
 - [[Algorithms to Live By]]
+- [[Terrence Tao on The Future of Mathematics]]
