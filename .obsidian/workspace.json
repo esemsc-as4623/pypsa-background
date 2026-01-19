@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Misc/Terrence Tao on The Future of Mathematics.md",
+                "file": "Meetings/2026-01-19.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Terrence Tao on The Future of Mathematics"
+              "title": "2026-01-19"
             }
           }
         ],
@@ -186,8 +186,10 @@
   },
   "active": "efa05889b822e3fc",
   "lastOpenFiles": [
-    "Misc/Miscellaneous.md",
+    "Meetings/2025-12-10.md",
+    "Meetings/2026-01-19.md",
     "Misc/Terrence Tao on The Future of Mathematics.md",
+    "Misc/Miscellaneous.md",
     "Research Avenues.md",
     "PyPSA/Py-OS-Comp Planning.md",
     "PyPSA/Py-OS-Comp Code Improvements.md",
@@ -210,8 +212,6 @@
     "Lit/Lavidas et al., 2025.md",
     "Lit/Mao et al., 2024.md",
     "Lit/McCollum et al., 2020.md",
-    "Lit/Moksnes and Usher, 2023.md",
-    "Lit/Pennock et al., 2023.md",
     "Untitled.canvas",
     "Misc",
     "Meetings",
