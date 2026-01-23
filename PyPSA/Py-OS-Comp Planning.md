@@ -1,57 +1,8 @@
 #pypsa #osemosys #benchmark 
 
-| PyPSA Component                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | OSeMOSYS Component                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Implementation                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`bus`](https://docs.pypsa.org/latest/user-guide/components/buses/)<br>- fundamental node of network<br>- enforces energy conservation<br>- represent grid connection point or non-electric energy carriers or non-energy carriers in different locations<br>                                                                                                                                                                                                                                                                                                                      | `REGION.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | one REGION = one bus<br><br>[x] topology.py<br>                                                                 |
-| [`snapshot`](https://docs.pypsa.org/latest/user-guide/design/#snapshots)<br>- represent time steps<br>- used to represent time-varying nature of network<br>- all time-dependent series quantities indexed by snapshots<br>- snapshot weightings applied to each snapshot so that snapshots represent more than one hour or fractions of one hour (default: 1.0)<br>- 3 categories of weightings:<br>1. objective = weight in objective function<br>2. store = state of charge change for stores and storage units<br>3. generator = used in global constraints and energy balance | `YEAR.csv`- discrete years in model<br>`SEASON.csv`- unique seasons in each year<br>`DAYTYPE.csv`- unique day types in each season<br>`DAILYTIMEBRACKET.csv`- unique time periods in each day<br>`TIMESLICE.csv`- unique season x daytype x dailytimebracket (repeats for each year)<br>`YearSplit.csv`- annual proportion of the year attributed to each timeslice<br>`DaySplit.csv`- annual proportion of the year attributed to each dailytimebracket<br>`DaysInDayType.csv`- raw number of days of each daytype in each season<br>`Conversionls.csv`- map of timeslice to season<br>`Conversionld.csv`- map of timeslice to daytype <br>`Conversionlh.csv`- map of timeslice to dailytimebracket | snapshot = unique (YEAR, TIMESLICE) tuple<br>snapshot_weighting = YearSplit(TIMESLICE, YEAR)<br><br>[x] time.py |
-| [`investment_periods`](https://docs.pypsa.org/latest/user-guide/design/#investment-periods)<br>- monotonically increasing integers of years<br>- by default, single investment period (overnight scenario)<br>- investment weightings applied to each investment period (default: 1.0)<br>- 2 columns:<br>1. objective = multiplied with all cost coefficients in objective function of investment period<br>2. years = elapsed time until subsequent investment period                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | #todo                                                                                                           |
-| [`load`](https://docs.pypsa.org/latest/user-guide/components/loads/)<br>- attached to single bus<br>- represents demand<br>- (if $sign = 1$, models exogenous supply, e.g. a building with solar panels with supply > demand)<br>- $p>0$: load is consuming active power<br>- $q > 0$: load is consuming reactive power                                                                                                                                                                                                                                                            | `AccumulatedAnnualDemand.csv`<br>`SpecifiedAnnualDemand.csv`<br>`SpecifiedDemandProfile.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [x] demand.py<br><br>#todo how does PyPSA-EUR deal with $q$?                                                    |
-| [`carrier`](https://docs.pypsa.org/latest/user-guide/components/carriers/)<br>- energy carrier of bus<br>- AC / DC / hydrogen / heat                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | add all carriers to network<br><br>#todo                                                                        |
-| [`generator`](https://docs.pypsa.org/latest/user-guide/components/generators/)<br>- attach to a single bus<br>- feed in power<br>- convert energy from their carrier to the carrier of the bus to which they attach<br>- (if $sign = -1$, models withdrawal, e.g. a battery charging)                                                                                                                                                                                                                                                                                              | `CapacityToActivityUnit.csv`<br>`CapacityFactor.csv`<br>`AvailabilityFactor.csv`<br>`OperationalLife.csv`<br>`ResidualCapacity.csv`<br>`InputActivityRatio.csv`<br>`OutputActivityRatio.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | [. ] supply.py                                                                                                  |
-| `generator.p_nom`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `ResidualCapacity.csv` (existing) or capacity optimization                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Direct mapping for existing capacity; for optimization, use OSeMOSYS capacity variables.                        |
-| `generator.p_max_pu`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `CapacityFactor.csv` (by TIMESLICE)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Requires aggregation: map PyPSA time series to OSeMOSYS timeslice structure.                                    |
-| `generator.efficiency`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `InputActivityRatio.csv` / `OutputActivityRatio.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Calculation: InputActivityRatio = 1/efficiency; OutputActivityRatio = efficiency.                               |
-| `generator.capital_cost`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `CapitalCost.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Requires unit conversion: €/MW → €/GW (multiply by 1000).                                                       |
-| `generator.marginal_cost`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `VariableCost.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Requires unit conversion: €/MWh → €/PJ (multiply by 3.6, then by 1000 for GW/PJ if needed).                     |
-| ***`generator.committable`, `min_up_time`, `ramp_limit_up/down`, `start_up_cost`***                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | ***(No direct OSeMOSYS equivalent)***                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | ***Not directly translatable; document as limitation.***                                                        |
-| `StorageUnit.p_nom`, `StorageUnit.max_hours`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `STORAGE.csv` (energy capacity), `TechnologyToStorage.csv` (charge tech), `TechnologyFromStorage.csv` (discharge tech)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Decomposition: StorageUnit splits into storage facility + charge/discharge technologies.                        |
-| `StorageUnit.efficiency_store`, `efficiency_dispatch`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | `InputActivityRatio.csv` / `OutputActivityRatio.csv` for charge/discharge techs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Calculation: assign efficiencies to respective charge/discharge technologies.                                   |
-| `StorageUnit.standing_loss`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Storage loss parameters (no direct OSeMOSYS equivalent)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Assumption: approximate via MinStorageCharge or ignore if negligible.                                           |
-| `Store.e_nom`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `STORAGE.csv` (energy capacity)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Direct mapping.                                                                                                 |
-| `Link` for charge/discharge                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `TechnologyToStorage.csv` / `TechnologyFromStorage.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Decomposition: Store + Link becomes storage facility + charge/discharge techs.                                  |
-| `Link.p_nom`, `Link.efficiency`, `Link.efficiency2...`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `TECHNOLOGY.csv`, `MODE_OF_OPERATION.csv`, `InputActivityRatio.csv`, `OutputActivityRatio.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Decomposition: Each port combination becomes a MODE_OF_OPERATION; assign efficiencies per mode.                 |
-| `Line.bus0`, `Line.bus1`, `Line.s_nom`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `TradeRoute.csv` (inter-regional trade), `REGION.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Assumption: Map lines to TradeRoute if regional model; otherwise, document as unmapped.                         |
-| ***`Transformer.bus0`, `Transformer.bus1`, `Transformer.s_nom`***                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | ***(No direct OSeMOSYS equivalent)***                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | ***Not directly translatable; document as unmapped unless regional topology is modeled.***                      |
-
-
-**PyPSA parameters without OSeMOSYS equivalents:**
-- Reactive power (`q`), voltage constraints, AC/DC network flow equations
-- Unit commitment features: `committable`, `min_up_time`, `start_up_cost`, `ramp_limit_up/down`
-- Network impedance, transformer tap settings
-- Flexible snapshot weightings (beyond fixed timeslice structure)
-
-**OSeMOSYS parameters without PyPSA equivalents:**
-- `MODE_OF_OPERATION` explicit definition
-- `CapacityToActivityUnit` conversion factor
-- `DepreciationMethod` (sinking fund vs straight-line)
-- Reserve margin constraints (`ReserveMargin.csv`, `ReserveMarginTagTechnology.csv`, `ReserveMarginTagFuel.csv`)
-- RE target constraints (`REMinProductionTarget.csv`, `RETagTechnology.csv`, `RETagFuel.csv`)
-- Explicit timeslice structure (`SEASON`, `DAYTYPE`, `DAILYTIMEBRACKET`)
-
-**Translation Notes:**
-- Snapshot → Timeslice aggregation: Map PyPSA snapshots to OSeMOSYS timeslices using representative periods and weighted averages.
-- CapacityToActivityUnit default: Use 31.536 for PJ/year or 8760 for GWh/year; document and validate unit consistency.
-- Unit conversions: MW/MWh → GW/PJ or GWh: multiply by 1000 for MW→GW, by 3.6 for MWh→PJ.
-- Discount rate handling: PyPSA does not require explicit discount rate; OSeMOSYS does—assume standard value or user input.
-- Unit commitment simplification: OSeMOSYS lacks direct support; ignore or approximate via conservative CapacityFactor.
-- Multi-port Link decomposition: Each port combination becomes a MODE_OF_OPERATION; assign efficiencies and input/output ratios per mode.
-- Storage decomposition logic: StorageUnit → charge tech + discharge tech + storage facility; Store + Link → storage facility + charge/discharge techs.
-
-
 # PyPSA Component Architecture and Parameters
 
 This document provides a comprehensive, structured reference for **PyPSA (Python for Power System Analysis)** components, parameters, constraints, and optimization features. It is intended to support **model translation and interoperability**, in particular with **OSeMOSYS**, and to serve as a canonical reference for the pyoscomp project.
-## 1. Overview of PyPSA
 
 PyPSA is a Python-based open-source framework for:
 * Power system analysis and optimization
@@ -62,163 +13,8 @@ PyPSA is a Python-based open-source framework for:
 * Stochastic programming
 
 PyPSA models systems as **networks** composed of components connected by **buses**, with optimization formulated as a **linear or mixed-integer linear program** using *linopy*.  
-## 2. pyoscomp Translation Status
 
-This section documents which PyPSA components and parameters are handled in the **pyoscomp** translation framework for generating OSeMOSYS-compatible datasets. Translation follows the phased Implementation Plan with foundational research complete and translation layer implementation in progress.
-### Status Legend
-- ✓ **Implemented**: Translation logic fully operational
-- ○ **Partial**: Research complete, implementation in progress
-- ✗ **Not Implemented**: Planned for future phases
-### Bus Component Translation
-| PyPSA Attribute    | pyoscomp Translation Method                                | OSeMOSYS Mapping                            | Status |
-| ------------------ | ---------------------------------------------------------- | ------------------------------------------- | ------ |
-| `name`             | `translation/pypsa_translator.py`<br>- `translate_buses()` | REGION.csv entry                            | ✗      |
-| `carrier`          | Translation logic                                          | Fuel / commodity categorization             | ✗      |
-| x, y (coordinates) | Geographic metadata                                        | Not directly translated (metadata only)     | ✗      |
-| `v_nom`            | Network parameter                                          | Not translated (OSeMOSYS abstracts voltage) | ✗      |
-**Translation Approach**: Each PyPSA bus maps to one OSeMOSYS REGION. Carrier attribute determines fuel/commodity generation strategy (electricity, heat, hydrogen, etc.). Geographic coordinates preserved as metadata but not used in OSeMOSYS optimization.
-### Generator Component Translation
-| PyPSA Attribute          | pyoscomp Translation Method                                     | OSeMOSYS Mapping                                               | Status |
-| ------------------------ | --------------------------------------------------------------- | -------------------------------------------------------------- | ------ |
-| `p_nom` (fixed)          | `translation/pypsa_translator.py`<br>- `translate_generators()` | ResidualCapacity.csv                                           | ✗      |
-| `p_nom` (extendable)     | Translation logic                                               | Capacity optimization variables                                | ✗      |
-| `p_max_pu` (time series) | Timeslice aggregation                                           | CapacityFactor.csv (by TIMESLICE)                              | ✗      |
-| `efficiency`             | Performance translation                                         | InputActivityRatio.csv (1/efficiency), OutputActivityRatio.csv | ✗      |
-| `capital_cost` (€/MW)    | Economics translation                                           | CapitalCost.csv (€/GW, multiply by 1000)                       | ✗      |
-| `marginal_cost` (€/MWh)  | Economics translation                                           | VariableCost.csv (€/PJ, unit conversion)                       | ✗      |
-| `carrier`                | Carrier mapping                                                 | Input / output fuel determination                              | ✗      |
-| `bus`                    | Topology linkage                                                | Region assignment                                              | ✗      |
-**Translation Challenges**:
-- **`p_max_pu` aggregation**: PyPSA snapshot time series → OSeMOSYS timeslice representative values (weighted average or percentile-based)
-- **Unit conversions**: MW→GW (×1000), €/MWh→€/PJ (×3.6 then adjust for activity units)
-- **CapacityToActivityUnit**: Critical conversion factor (31.536 for PJ/GW/year or 8760 for GWh/GW/year)
-### Load Component Translation
-| PyPSA Attribute       | pyoscomp Translation Method                               | OSeMOSYS Mapping                                        | Status |
-| --------------------- | --------------------------------------------------------- | ------------------------------------------------------- | ------ |
-| `p_set` (time series) | `translator/pypsa_translator.py`<br>- `translate_loads()` | SpecifiedAnnualDemand.csv<br>SpecifiedDemandProfile.csv | ✗      |
-| `bus`                 | Topology linkage                                          | Region assignment for demand                            | ✗      |
-| `carrier`             | Fuel mapping                                              | Demand fuel specification                               | ✗      |
-**Translation Approach**:
-1. Calculate annual total: `SpecifiedAnnualDemand = sum(p_set × snapshot_weightings)`
-2. Generate timeslice profile: `SpecifiedDemandProfile[l] = (demand in timeslice l) / total annual`
-3. Aggregate snapshots to timeslices using predefined timeslice structure
-### StorageUnit Component Translation
-| PyPSA Attribute          | pyoscomp Translation Method                                        | OSeMOSYS Mapping                                           | Status |
-| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------- | ------ |
-| `p_nom` (power capacity) | `translation/pypsa_translator.py`<br>- `translate_storage_units()` | STORAGE capacity = `p_nom` x `max_hours` (energy)          | ✗      |
-| `max_hours` (E/P ratio)  | Decomposition logic                                                | Energy capacity calculation                                | ✗      |
-| `efficency_store`        | Storage charge tech                                                | InputActivityRatio for charge TECHNOLOGY                   | ✗      |
-| `efficiency_dispatch`    | Storage discharge tech                                             | OutputActivityRatio for discharge TECHNOLOGY               | ✗      |
-| `standing_loss`          | Storage loss approximation                                         | MinStorageCharge approximation or ignored                  | ✗      |
-| `capital_cost`           | Economics translation                                              | Split between STORAGE and charge/discharge TECHNOLOGY(ies) | ✗      |
-**Translation Strategy** (Decomposition):
-1. Create **STORAGE facility** with capacity `e_nom = p_nom × max_hours`
-2. Create **charge TECHNOLOGY** with `TechnologyToStorage` linkage, efficiency from `efficiency_store`
-3. Create **discharge TECHNOLOGY** with `TechnologyFromStorage` linkage, efficiency from `efficiency_dispatch`
-4. Couple charge/discharge capacity to storage power rating
-
-**Critical Note**: Single PyPSA StorageUnit becomes **three OSeMOSYS entities**, requiring careful tracking and naming conventions (e.g., `BATTERY_01`, `BATTERY_01_CHARGE`, `BATTERY_01_DISCHARGE`).
-### Store Component Translation
-| PyPSA Attribute           | pyoscomp Translation Method                                 | OSeMOSYS Mapping                         | Status |
-| ------------------------- | ----------------------------------------------------------- | ---------------------------------------- | ------ |
-| `e_nom` (energy capacity) | `translation/pypsa_translator.py`<br>- `translate_stores()` | STORAGE.csv entry                        | ✗      |
-| `e_min_pu`, `e_max_pu`    | Storage constraints                                         | MinStorageCarge, storage capacity limits | ✗      |
-| `e_initial`               | Initial state                                               | StorageLevelStart.csv                    | ✗      |
-| `e_cyclic`                | Cyclic constraint                                           | End-of-year = start-of-year constraint   | ✗      |
-**Translation Strategy**: Store requires associated Link components for charging/discharging. Translation identifies Links connected to Store and decomposes into charge/discharge TECHNOLOGY entities with `TechnologyToStorage` / `TechnologyFromStorage` linkages.
-### Link Component Translation
-| PyPSA Attribute                  | pyoscomp Translation Method                                | OSeMOSYS Mapping                                                         | Status |
-| -------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ | ------ |
-| `p_nom` (capacity)               | `translation/pypsa_translator.py`<br>- `translate_links()` | TECHNOLOGY capacity or trade route capacity                              | ✗      |
-| `efficiency`, `efficiency2`, ... | Multi-port decomposition                                   | MODE_OF_OPERATION with InputActivityRatio / OutputActivityRatio per port | ✗      |
-| `bus0`, `bus1`, `bus2`, ...      | Port configuration                                         | Region fuel flow definitions per mode                                    | ✗      |
-| `capital_cost`, `marginal_cost`  | Economics translation                                      | CapitalCost, VariableCost for TECHNOLOGY                                 | ✗      |
-**Translation Strategy** (Multi-Port Links):
-1. Create single TECHNOLOGY for Link
-2. Each port combination → separate MODE_OF_OPERATION entry
-3. Input ports (bus0, negative efficiency) → InputActivityRatio per mode
-4. Output ports (bus1+, positive efficiency) → OutputActivityRatio per mode
-5. Enables sector coupling (e.g., electrolyzer: electricity input, H2 output, heat output)
-
-**Example**: 3-port Link (electricity→hydrogen+heat) becomes TECHNOLOGY with MODE1 having:
-- InputActivityRatio[ELEC] = 1.0 / efficiency
-- OutputActivityRatio[H2] = efficiency × port1_fraction
-- OutputActivityRatio[HEAT] = efficiency2 × port2_fraction
-### Line Component Translation
-| PyPSA Attribute     | pyoscomp Translation Method | OSeMOSYS Mapping                                       | Status |
-| ------------------- | --------------------------- | ------------------------------------------------------ | ------ |
-| `bus0`, `bus1`, ... | Regional mapping            | TradeRoute if buses map to distinct REGIONs            | ✗      |
-| `s_nom` (capacity)  | Trade capacity              | Trade capacity limit (if applicable)                   | ✗      |
-| r, x (impedance)    | Network physics             | Not translated (OSeMOSYS lacks network flow equations) | ✗      |
-**Translation Limitation**: Lines represent **AC/DC power flow with network physics** (Kirchhoff's laws, impedance). OSeMOSYS uses **commodity flow model** without network equations. Translation is only meaningful if:
-1. PyPSA buses aggregate to distinct OSeMOSYS regions
-2. Lines between regions map to TradeRoute
-3. User accepts loss of network flow detail (impedance, voltage, reactive power)
-
-**Default Approach**: Single-region models ignore Lines (intra-regional network abstracted away). Multi-region models require user specification of bus→region mapping.
-### Transformer Component Translation
-| PyPSA Attribute    | pyoscomp Translation Method | OSeMOSYS Mapping                        | Status |
-| ------------------ | --------------------------- | --------------------------------------- | ------ |
-| `bus0`, `bus1`     | Voltage level mapping       | Not directly translated                 | ✗      |
-| `s_nom` (capacity) | Capacity limits             | Not translated unless regional boundary | ✗      |
-**Translation Limitation**: Transformers model **voltage transformation between buses**. OSeMOSYS abstracts voltage levels entirely. Transformers are ignored in translation unless they define regional boundaries (similar to Line treatment).
-### Economics Integration
-| PyPSA Attribute                         | pyoscomp Translation Method                                   | OSeMOSYS Mapping                        | Status |
-| --------------------------------------- | ------------------------------------------------------------- | --------------------------------------- | ------ |
-| `capital_cost` (various components)     | `translation/pypsa_translate.py`<br>- `translate_economics()` | CapitalCost.csv (with unit conversion)  | ✗      |
-| `marginal_cost` (Generator, Link, etc.) | Economics translation                                         | VariableCost.csv (with unit conversion) | ✗      |
-| Discount rate (not explicit in PyPSA)   | User-specified parameter                                      | DiscountRate.csv (required by OSeMOSYS) | ✗      |
-**Translation Challenges**:
-- **Unit conversions**: PyPSA uses €/MW for capital, €/MWh for variable. OSeMOSYS uses consistent capacity/activity units (€/GW, €/PJ). Conversion factors must align with CapacityToActivityUnit.
-- **Discount rate**: PyPSA doesn't require explicit discount rate (can be applied in post-processing). OSeMOSYS requires DiscountRate.csv for NPV calculations. Translation must accept user-specified value or apply default (e.g., 5%).
-- **Fixed O&M**: PyPSA doesn't separate capital from fixed O&M as clearly as OSeMOSYS. May require user specification or standard assumptions (e.g., 2-4% of capital cost annually).
-### Time Series Aggregation
-| PyPSA Attribute                                     | pyoscomp Translation Method                                     | OSeMOSYS Mapping                                                 | Status |
-| --------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------- | ------ |
-| `snapshots` (flexible time steps)                   | `translation/pypsa_translator.py`<br>- `aggregate_timeseries()` | TIMESLICE (predefined structure)                                 | ✗      |
-| `snapshot_weightings` (objective, store, generator) | Aggregation logic                                               | YearSplit fractions (Conversionlh x Conversionld x Conversionls) | ✗      |
-| Time series (`p_max_pu`, `p_set`, etc.)             | Statistical aggregation (mean, percentile)                      | Timeslice representative values                                  | ✗      |
-
-**Translation Approach**:
-1. **Predefine timeslice structure**: User specifies SEASON × DAYTYPE × DAILYTIMEBRACKET (e.g., 4×2×3 = 24 timeslices)
-2. **Map snapshots to timeslices**: Assign each PyPSA snapshot to one OSeMOSYS timeslice based on temporal attributes
-3. **Aggregate time series**: For each timeslice, calculate representative value:
-- **CapacityFactor**: Weighted mean or conservative percentile (e.g., P10 for reliability)
-- **Demand profile**: Mean demand in timeslice / annual total
-- **Snapshot weightings**: Sum weightings in timeslice → YearSplit fraction
-
-**Key Decision**: Timeslice aggregation method (mean vs percentile) significantly affects results. Conservative approach uses low percentile for generation availability, high percentile for demand to ensure adequacy.
-### Carrier Mapping
-| PyPSA Attribute      | pyoscomp Translation Method | OSeMOSYS Mapping                    | Status |
-| -------------------- | --------------------------- | ----------------------------------- | ------ |
-| AC, DC (electricity) | Carrier translation         | ELEC or ELEC_HV / ELEC_MV / ELEC_LV | ✗      |
-| heat, urban_heat     | Carrier translation         | HEAT_DISTRICT or HEAT_LOW_TEMP      | ✗      |
-| H2, hydrogen         | Carrier translation         | H2_COMPRESSED or H2                 | ✗      |
-| gas, natural gas     | Carrier translation         | GAS_NAT                             | ✗      |
-| oil, petroleum       | Carrier translation         | OIL_CRUDE or petroleum products     | ✗      |
-| biomass              | Carrier translation         | BIOMASS_SOLID or BIOMASS_GAS        | ✗      |
-**Translation Strategy**: PyPSA carriers define energy types flowing through network. Translation creates corresponding OSeMOSYS FUEL entries. Mapping can be:
-- **1:1**: Simple carrier (e.g., `H2` → `H2`)
-- **1:many**: Carrier with voltage levels (e.g., `AC` → `ELEC_HV`, `ELEC_MV`, `ELEC_LV`)
-- **User-specified**: Custom mapping for specific modeling needs
-### Implementation Notes
-
-**Phase 4 (In Progress)**: Translation layer orchestrates component usage to convert PyPSA Network objects to OSeMOSYS CSV datasets. Key tasks:
-- Bus→REGION, Carrier→FUEL, timeslice aggregation framework
-- Generator, Load, StorageUnit, Link translation with decomposition logic
-- Economics integration with unit conversion validation
-
-**Critical Path Items**:
-1. **CapacityToActivityUnit**: Conversion factor must be consistent across all translations (31.536 for PJ/GW/year or 8760 for GWh/GW/year)
-2. **Timeslice structure**: User must specify before translation (cannot dynamically adjust OSeMOSYS timeslices)
-3. **Storage decomposition naming**: StorageUnit generates 3 entities requiring clear naming convention
-4. **Multi-port Link modes**: MODE_OF_OPERATION generation must handle arbitrary port counts
-
-**Validation Strategy**: Translation outputs validated against:
-- Energy balance: PyPSA annual energy totals ≈ OSeMOSYS annual activity × CapacityToActivityUnit
-- Capacity limits: PyPSA p_nom constraints ≈ OSeMOSYS TotalCapacityAnnual
-- Cost totals: PyPSA objective function ≈ OSeMOSYS TotalDiscountedCost (within unit conversion tolerance)
-## 3. Component Types
+## 1. Components
 
 PyPSA defines **14 primary component types**.
 
@@ -464,21 +260,7 @@ Imposes system-wide constraints.
 | Cost (capacity) | €/MW     |
 | Cost (energy)   | €/MWh    |
 | Emissions       | tCO₂/MWh |
-## 4. Mapping Guidance to OSeMOSYS
-### Direct Mappings
-* Bus → Region
-* Carrier → Fuel / Commodity
-* Generator → Technology
-* Load → SpecifiedAnnualDemand
-### Key Translation Challenges
-* Snapshots vs Timeslices
-* MW/MWh vs PJ/year
-* Marginal vs Variable cost
-* Availability vs CapacityFactor
-* Storage formulations
-* Multi-port Links
-
-## 5. PyPSA Features Not Translated to OSeMOSYS
+## 2. PyPSA Features Not Translated to OSeMOSYS
 This section documents PyPSA components, parameters, and features that **will not be translated** to OSeMOSYS in the pyoscomp framework. These exclusions reflect fundamental differences in model formulations and scope rather than implementation gaps.
 ### Reactive Power (q) Modeling
 **PyPSA Features Excluded**:
@@ -673,3 +455,163 @@ OSeMOSYS uses **single temporal weighting** via YearSplit, which uniformly weigh
 4. OSeMOSYS compatibility for stakeholders requiring specific formulation
 
 By clearly documenting what is **not translated**, users can make informed decisions about when translation is appropriate and when native PyPSA or OSeMOSYS is more suitable.
+
+
+
+
+
+# Translation Status
+This section documents which PyPSA components and parameters are handled in the **pyoscomp** translation framework for generating OSeMOSYS-compatible datasets. Translation follows the phased Implementation Plan with foundational research complete and translation layer implementation in progress.
+### Status Legend
+- ✓ **Implemented**: Translation logic fully operational
+- ○ **Partial**: Research complete, implementation in progress
+- ✗ **Not Implemented**: Planned for future phases
+### Bus Component Translation
+| PyPSA Attribute    | pyoscomp Translation Method                                | OSeMOSYS Mapping                            | Status |
+| ------------------ | ---------------------------------------------------------- | ------------------------------------------- | ------ |
+| `name`             | `translation/pypsa_translator.py`<br>- `translate_buses()` | REGION.csv entry                            | ✗      |
+| `carrier`          | Translation logic                                          | Fuel / commodity categorization             | ✗      |
+| x, y (coordinates) | Geographic metadata                                        | Not directly translated (metadata only)     | ✗      |
+| `v_nom`            | Network parameter                                          | Not translated (OSeMOSYS abstracts voltage) | ✗      |
+**Translation Approach**: Each PyPSA bus maps to one OSeMOSYS REGION. Carrier attribute determines fuel/commodity generation strategy (electricity, heat, hydrogen, etc.). Geographic coordinates preserved as metadata but not used in OSeMOSYS optimization.
+### Generator Component Translation
+| PyPSA Attribute          | pyoscomp Translation Method                                     | OSeMOSYS Mapping                                               | Status |
+| ------------------------ | --------------------------------------------------------------- | -------------------------------------------------------------- | ------ |
+| `p_nom` (fixed)          | `translation/pypsa_translator.py`<br>- `translate_generators()` | ResidualCapacity.csv                                           | ✗      |
+| `p_nom` (extendable)     | Translation logic                                               | Capacity optimization variables                                | ✗      |
+| `p_max_pu` (time series) | Timeslice aggregation                                           | CapacityFactor.csv (by TIMESLICE)                              | ✗      |
+| `efficiency`             | Performance translation                                         | InputActivityRatio.csv (1/efficiency), OutputActivityRatio.csv | ✗      |
+| `capital_cost` (€/MW)    | Economics translation                                           | CapitalCost.csv (€/GW, multiply by 1000)                       | ✗      |
+| `marginal_cost` (€/MWh)  | Economics translation                                           | VariableCost.csv (€/PJ, unit conversion)                       | ✗      |
+| `carrier`                | Carrier mapping                                                 | Input / output fuel determination                              | ✗      |
+| `bus`                    | Topology linkage                                                | Region assignment                                              | ✗      |
+**Translation Challenges**:
+- **`p_max_pu` aggregation**: PyPSA snapshot time series → OSeMOSYS timeslice representative values (weighted average or percentile-based)
+- **Unit conversions**: MW→GW (×1000), €/MWh→€/PJ (×3.6 then adjust for activity units)
+- **CapacityToActivityUnit**: Critical conversion factor (31.536 for PJ/GW/year or 8760 for GWh/GW/year)
+### Load Component Translation
+| PyPSA Attribute       | pyoscomp Translation Method                               | OSeMOSYS Mapping                                        | Status |
+| --------------------- | --------------------------------------------------------- | ------------------------------------------------------- | ------ |
+| `p_set` (time series) | `translator/pypsa_translator.py`<br>- `translate_loads()` | SpecifiedAnnualDemand.csv<br>SpecifiedDemandProfile.csv | ✗      |
+| `bus`                 | Topology linkage                                          | Region assignment for demand                            | ✗      |
+| `carrier`             | Fuel mapping                                              | Demand fuel specification                               | ✗      |
+**Translation Approach**:
+1. Calculate annual total: `SpecifiedAnnualDemand = sum(p_set × snapshot_weightings)`
+2. Generate timeslice profile: `SpecifiedDemandProfile[l] = (demand in timeslice l) / total annual`
+3. Aggregate snapshots to timeslices using predefined timeslice structure
+### StorageUnit Component Translation
+| PyPSA Attribute          | pyoscomp Translation Method                                        | OSeMOSYS Mapping                                           | Status |
+| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------- | ------ |
+| `p_nom` (power capacity) | `translation/pypsa_translator.py`<br>- `translate_storage_units()` | STORAGE capacity = `p_nom` x `max_hours` (energy)          | ✗      |
+| `max_hours` (E/P ratio)  | Decomposition logic                                                | Energy capacity calculation                                | ✗      |
+| `efficency_store`        | Storage charge tech                                                | InputActivityRatio for charge TECHNOLOGY                   | ✗      |
+| `efficiency_dispatch`    | Storage discharge tech                                             | OutputActivityRatio for discharge TECHNOLOGY               | ✗      |
+| `standing_loss`          | Storage loss approximation                                         | MinStorageCharge approximation or ignored                  | ✗      |
+| `capital_cost`           | Economics translation                                              | Split between STORAGE and charge/discharge TECHNOLOGY(ies) | ✗      |
+**Translation Strategy** (Decomposition):
+1. Create **STORAGE facility** with capacity `e_nom = p_nom × max_hours`
+2. Create **charge TECHNOLOGY** with `TechnologyToStorage` linkage, efficiency from `efficiency_store`
+3. Create **discharge TECHNOLOGY** with `TechnologyFromStorage` linkage, efficiency from `efficiency_dispatch`
+4. Couple charge/discharge capacity to storage power rating
+
+**Critical Note**: Single PyPSA StorageUnit becomes **three OSeMOSYS entities**, requiring careful tracking and naming conventions (e.g., `BATTERY_01`, `BATTERY_01_CHARGE`, `BATTERY_01_DISCHARGE`).
+### Store Component Translation
+| PyPSA Attribute           | pyoscomp Translation Method                                 | OSeMOSYS Mapping                         | Status |
+| ------------------------- | ----------------------------------------------------------- | ---------------------------------------- | ------ |
+| `e_nom` (energy capacity) | `translation/pypsa_translator.py`<br>- `translate_stores()` | STORAGE.csv entry                        | ✗      |
+| `e_min_pu`, `e_max_pu`    | Storage constraints                                         | MinStorageCarge, storage capacity limits | ✗      |
+| `e_initial`               | Initial state                                               | StorageLevelStart.csv                    | ✗      |
+| `e_cyclic`                | Cyclic constraint                                           | End-of-year = start-of-year constraint   | ✗      |
+**Translation Strategy**: Store requires associated Link components for charging/discharging. Translation identifies Links connected to Store and decomposes into charge/discharge TECHNOLOGY entities with `TechnologyToStorage` / `TechnologyFromStorage` linkages.
+### Link Component Translation
+| PyPSA Attribute                  | pyoscomp Translation Method                                | OSeMOSYS Mapping                                                         | Status |
+| -------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------ | ------ |
+| `p_nom` (capacity)               | `translation/pypsa_translator.py`<br>- `translate_links()` | TECHNOLOGY capacity or trade route capacity                              | ✗      |
+| `efficiency`, `efficiency2`, ... | Multi-port decomposition                                   | MODE_OF_OPERATION with InputActivityRatio / OutputActivityRatio per port | ✗      |
+| `bus0`, `bus1`, `bus2`, ...      | Port configuration                                         | Region fuel flow definitions per mode                                    | ✗      |
+| `capital_cost`, `marginal_cost`  | Economics translation                                      | CapitalCost, VariableCost for TECHNOLOGY                                 | ✗      |
+**Translation Strategy** (Multi-Port Links):
+1. Create single TECHNOLOGY for Link
+2. Each port combination → separate MODE_OF_OPERATION entry
+3. Input ports (bus0, negative efficiency) → InputActivityRatio per mode
+4. Output ports (bus1+, positive efficiency) → OutputActivityRatio per mode
+5. Enables sector coupling (e.g., electrolyzer: electricity input, H2 output, heat output)
+
+**Example**: 3-port Link (electricity→hydrogen+heat) becomes TECHNOLOGY with MODE1 having:
+- InputActivityRatio[ELEC] = 1.0 / efficiency
+- OutputActivityRatio[H2] = efficiency × port1_fraction
+- OutputActivityRatio[HEAT] = efficiency2 × port2_fraction
+### Line Component Translation
+| PyPSA Attribute     | pyoscomp Translation Method | OSeMOSYS Mapping                                       | Status |
+| ------------------- | --------------------------- | ------------------------------------------------------ | ------ |
+| `bus0`, `bus1`, ... | Regional mapping            | TradeRoute if buses map to distinct REGIONs            | ✗      |
+| `s_nom` (capacity)  | Trade capacity              | Trade capacity limit (if applicable)                   | ✗      |
+| r, x (impedance)    | Network physics             | Not translated (OSeMOSYS lacks network flow equations) | ✗      |
+**Translation Limitation**: Lines represent **AC/DC power flow with network physics** (Kirchhoff's laws, impedance). OSeMOSYS uses **commodity flow model** without network equations. Translation is only meaningful if:
+1. PyPSA buses aggregate to distinct OSeMOSYS regions
+2. Lines between regions map to TradeRoute
+3. User accepts loss of network flow detail (impedance, voltage, reactive power)
+
+**Default Approach**: Single-region models ignore Lines (intra-regional network abstracted away). Multi-region models require user specification of bus→region mapping.
+### Transformer Component Translation
+| PyPSA Attribute    | pyoscomp Translation Method | OSeMOSYS Mapping                        | Status |
+| ------------------ | --------------------------- | --------------------------------------- | ------ |
+| `bus0`, `bus1`     | Voltage level mapping       | Not directly translated                 | ✗      |
+| `s_nom` (capacity) | Capacity limits             | Not translated unless regional boundary | ✗      |
+**Translation Limitation**: Transformers model **voltage transformation between buses**. OSeMOSYS abstracts voltage levels entirely. Transformers are ignored in translation unless they define regional boundaries (similar to Line treatment).
+### Economics Integration
+| PyPSA Attribute                         | pyoscomp Translation Method                                   | OSeMOSYS Mapping                        | Status |
+| --------------------------------------- | ------------------------------------------------------------- | --------------------------------------- | ------ |
+| `capital_cost` (various components)     | `translation/pypsa_translate.py`<br>- `translate_economics()` | CapitalCost.csv (with unit conversion)  | ✗      |
+| `marginal_cost` (Generator, Link, etc.) | Economics translation                                         | VariableCost.csv (with unit conversion) | ✗      |
+| Discount rate (not explicit in PyPSA)   | User-specified parameter                                      | DiscountRate.csv (required by OSeMOSYS) | ✗      |
+**Translation Challenges**:
+- **Unit conversions**: PyPSA uses €/MW for capital, €/MWh for variable. OSeMOSYS uses consistent capacity/activity units (€/GW, €/PJ). Conversion factors must align with CapacityToActivityUnit.
+- **Discount rate**: PyPSA doesn't require explicit discount rate (can be applied in post-processing). OSeMOSYS requires DiscountRate.csv for NPV calculations. Translation must accept user-specified value or apply default (e.g., 5%).
+- **Fixed O&M**: PyPSA doesn't separate capital from fixed O&M as clearly as OSeMOSYS. May require user specification or standard assumptions (e.g., 2-4% of capital cost annually).
+### Time Series Aggregation
+| PyPSA Attribute                                     | pyoscomp Translation Method                                     | OSeMOSYS Mapping                                                 | Status |
+| --------------------------------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------- | ------ |
+| `snapshots` (flexible time steps)                   | `translation/pypsa_translator.py`<br>- `aggregate_timeseries()` | TIMESLICE (predefined structure)                                 | ✗      |
+| `snapshot_weightings` (objective, store, generator) | Aggregation logic                                               | YearSplit fractions (Conversionlh x Conversionld x Conversionls) | ✗      |
+| Time series (`p_max_pu`, `p_set`, etc.)             | Statistical aggregation (mean, percentile)                      | Timeslice representative values                                  | ✗      |
+
+**Translation Approach**:
+1. **Predefine timeslice structure**: User specifies SEASON × DAYTYPE × DAILYTIMEBRACKET (e.g., 4×2×3 = 24 timeslices)
+2. **Map snapshots to timeslices**: Assign each PyPSA snapshot to one OSeMOSYS timeslice based on temporal attributes
+3. **Aggregate time series**: For each timeslice, calculate representative value:
+- **CapacityFactor**: Weighted mean or conservative percentile (e.g., P10 for reliability)
+- **Demand profile**: Mean demand in timeslice / annual total
+- **Snapshot weightings**: Sum weightings in timeslice → YearSplit fraction
+
+**Key Decision**: Timeslice aggregation method (mean vs percentile) significantly affects results. Conservative approach uses low percentile for generation availability, high percentile for demand to ensure adequacy.
+### Carrier Mapping
+| PyPSA Attribute      | pyoscomp Translation Method | OSeMOSYS Mapping                    | Status |
+| -------------------- | --------------------------- | ----------------------------------- | ------ |
+| AC, DC (electricity) | Carrier translation         | ELEC or ELEC_HV / ELEC_MV / ELEC_LV | ✗      |
+| heat, urban_heat     | Carrier translation         | HEAT_DISTRICT or HEAT_LOW_TEMP      | ✗      |
+| H2, hydrogen         | Carrier translation         | H2_COMPRESSED or H2                 | ✗      |
+| gas, natural gas     | Carrier translation         | GAS_NAT                             | ✗      |
+| oil, petroleum       | Carrier translation         | OIL_CRUDE or petroleum products     | ✗      |
+| biomass              | Carrier translation         | BIOMASS_SOLID or BIOMASS_GAS        | ✗      |
+**Translation Strategy**: PyPSA carriers define energy types flowing through network. Translation creates corresponding OSeMOSYS FUEL entries. Mapping can be:
+- **1:1**: Simple carrier (e.g., `H2` → `H2`)
+- **1:many**: Carrier with voltage levels (e.g., `AC` → `ELEC_HV`, `ELEC_MV`, `ELEC_LV`)
+- **User-specified**: Custom mapping for specific modeling needs
+### Implementation Notes
+
+**Phase 4 (In Progress)**: Translation layer orchestrates component usage to convert PyPSA Network objects to OSeMOSYS CSV datasets. Key tasks:
+- Bus→REGION, Carrier→FUEL, timeslice aggregation framework
+- Generator, Load, StorageUnit, Link translation with decomposition logic
+- Economics integration with unit conversion validation
+
+**Critical Path Items**:
+1. **CapacityToActivityUnit**: Conversion factor must be consistent across all translations (31.536 for PJ/GW/year or 8760 for GWh/GW/year)
+2. **Timeslice structure**: User must specify before translation (cannot dynamically adjust OSeMOSYS timeslices)
+3. **Storage decomposition naming**: StorageUnit generates 3 entities requiring clear naming convention
+4. **Multi-port Link modes**: MODE_OF_OPERATION generation must handle arbitrary port counts
+
+**Validation Strategy**: Translation outputs validated against:
+- Energy balance: PyPSA annual energy totals ≈ OSeMOSYS annual activity × CapacityToActivityUnit
+- Capacity limits: PyPSA p_nom constraints ≈ OSeMOSYS TotalCapacityAnnual
+- Cost totals: PyPSA objective function ≈ OSeMOSYS TotalDiscountedCost (within unit conversion tolerance)
