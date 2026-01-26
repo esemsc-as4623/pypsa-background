@@ -34,3 +34,5 @@ Copy output from task agent to manager agent for a new prompt for a new task.
 5. review steps to ensure that each one is efficient in terms of token consumption (i.e. context + output is reasonable).
 
 This consumes tokens VERY quickly. If the planning is all you need, use apm for that and then carefully ensure that you are copying the relevant files to perform the task outside of the IDE.
+
+Verdict: DO NOT USE

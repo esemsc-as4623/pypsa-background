@@ -1,6 +1,6 @@
 #pypsa 
 
-[[PyPSA-EUR]]
+[[PyPSA-EUR Outputs]] [[PyPSA-EUR Tests]]
 [[EVOLVE]]
 ### Comparisons
 [[PyPSA vs OSeMOSYS]]
@@ -28,9 +28,17 @@ two approaches for optimizing the energy transition pathway
 
 #### 1. Component Type Hierarchy
 
-PyPSA organizes components into the following categories:
+PyPSA is a Python-based open-source framework for:
+* Power system analysis and optimization
+* Sector-coupled energy system modeling (electricity, heat, hydrogen, fuels, CO₂, etc.)
+* Capacity expansion planning (CEP)
+* Unit commitment (UC)
+* Multi-period investment optimization
+* Stochastic programming
 
-##### **Core Component Types (14 total)**
+PyPSA models systems as **networks** composed of components connected by **buses**, with optimization formulated as a **linear or mixed-integer linear program** using *linopy*.  
+
+**Core Component Types (14 total)**
 
 1. **Bus** - Network nodes enforcing energy conservation
 2. **Carrier** - Energy carrier/technology descriptors
@@ -47,7 +55,7 @@ PyPSA organizes components into the following categories:
 13. **GlobalConstraint** - System-wide constraints
 14. **SubNetwork** - Network topology grouping
 
-##### **Component Categorization**
+**Component Categorization**
 
 **One-Port Components** (connect to single bus):
 - Generator, Load, StorageUnit, Store, ShuntImpedance
@@ -61,7 +69,7 @@ PyPSA organizes components into the following categories:
 **Controllable Components**:
 - Generator, Load, StorageUnit, Store, Link
 
-#### 2. Detailed Component Parameters by Type
+#### 2. Detailed Component Parameters
 
 ##### **A. Bus Component**
 
@@ -416,6 +424,10 @@ PyPSA supports **multi-period capacity expansion** with:
 
 #### 5. Time-Series and Snapshot Handling
 
+Time modelled via snapshots
+Snapshot weightings convert MW to MWh in objectives
+Dynamic parameters stored as time series per component
+
 **Snapshot Configuration**:
 - `n.set_snapshots()`: Define temporal resolution
 - `snapshot_weightings`: Weight for objective function integration
@@ -430,7 +442,6 @@ Stored in `n.{component_name}_t.{attribute}` DataFrames:
 - Multi-scenario support with scenario probabilities
 - Two-stage stochastic programming capability
 - Scenario-weighted objective function
-
 #### 6. Constraint Categories
 
 ##### **Capacity Constraints**
@@ -440,7 +451,7 @@ Stored in `n.{component_name}_t.{attribute}` DataFrames:
 ##### **Dispatch Constraints**
 - Per-unit limits: `p_min_pu`, `p_max_pu`
 - Volume limits: `e_sum_min`, `e_sum_max`
-- Ramp rate limits
+- Unit commitment, ramp rate limits
 ##### **Storage Constraints**
 - State-of-charge tracking
 - Cyclic boundary conditions
@@ -450,18 +461,34 @@ Stored in `n.{component_name}_t.{attribute}` DataFrames:
 - Kirchhoff's voltage law (KVL) for passive branches
 - Nodal balance (KCL) at all buses
 - Line flow limits (N-1 security)
+##### **Global Constraints**
+- emissions
+- growth
+- GlobalConstraint component: imposes system-wide constraints
+
+| Parameter         | Description            |
+| ----------------- | ---------------------- |
+| type              | Constraint category    |
+| carrier_attribute | Attribute to constrain |
+| sense             | <=, >=, ==             |
+| constant          | Constraint value       |
+
 #### 7. Units Summary
 
-**Power**: MW (megawatts)  
-**Energy**: MWh (megawatt-hours)  
-**Apparent Power**: MVA (megavolt-amperes)  
-**Reactive Power**: MVAr (megavolt-amperes reactive)  
-**Costs**: €/MW, €/MWh (currency per unit)  
-**Efficiency**: per unit [0, 1] (dimensionless ratio)  
-**Impedance**: Ω (ohms), S (siemens)  
-**Voltage**: kV (kilovolts), per unit  
-**Distance**: km (kilometers)  
-**Time**: hours, years
+| Quantity        | Unit                       |
+| --------------- | -------------------------- |
+| Power           | MW                         |
+| Energy          | MWh                        |
+| Apparent Power  | MVA                        |
+| Reactive Power  | MVAr                       |
+| Efficiency      | [0, 1] dimensionless ratio |
+| Voltage         | kV                         |
+| Cost (capacity) | €/MW                       |
+| Cost (energy)   | €/MWh                      |
+| Distance        | km                         |
+| Impedance       | Ω (ohms), S (siemens)      |
+| Emissions       | tCO₂/MWh                   |
+
 
 #### 9. Key PyPSA Architecture Features
 
