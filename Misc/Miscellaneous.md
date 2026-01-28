@@ -6,7 +6,7 @@
 	- SWE for Researchers: https://imperialcollegelondon.github.io/grad_school_software_engineering_course/
 	- OOP in Python: https://github.com/ImperialCollegeLondon/RCDS-object-oriented-python
 	- Profiling and optimization in Python: [[Profiling and Optimization in Python Notes]]
-	- Intro to containers: https://github.com/ImperialCollegeLondon/RCDS-intro-to-containers
+	- Intro to containers: [[Intro to Containers Notes]]
 - TU Berlin Data Science for ESM: https://fneum.github.io/data-science-for-esm/intro.html
 - Operations Research: https://ap-rg.eu/courses/operations-research-linma-2491/
 - Mixed Integer Programming: https://www.youtube.com/@mixedintegerprogramming/videos [[Mixed Integer Programming Notes]]

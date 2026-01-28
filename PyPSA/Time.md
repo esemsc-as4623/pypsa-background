@@ -1,19 +1,181 @@
 #pypsa #osemosys 
 
-Workflows:
-1. Uniform, high resolution timeseries >> discrete, non-uniform `snapshots` (PyPSA)
-2. Uniform, high resolution timeseries >> discrete, non-uniform `timeslices` (OSeMOSYS)
-3. Discrete, non-uniform `snapshots` (PyPSA) >> discrete, non-uniform `timeslices` (OSeMOSYS)
-4. Discrete non-uniform `timeslices` (OSeMOSYS) >> discrete, non-uniform `snapshots` (PyPSA)
+## Translation
 
-**Workflow 4: `timeslice` >> `snapshots`**
+1. Discrete, non-uniform `snapshots` (PyPSA) >> discrete, non-uniform `timeslices` (OSeMOSYS)
+2. Discrete non-uniform `timeslices` (OSeMOSYS) >> discrete, non-uniform `snapshots` (PyPSA)
+
+**Workflow 1: `snapshots` >> `timeslice`**
+`timeslice` = `season` x `daytype` x `dailytimebracket`
+`snapshots`= `pd.DateTime()` or `pd.Index()`
+mapping: one `snapshot` maps to at least one `timeslice` but one `timeslice` may be generated from at most one `snapshot` (many to one)
+edge cases: may create some empty `timeslices`, particularly at the start and end, which may need to be intelligently filled (e.g. forward fill, default fill)
+```python
+daytypes, dailytimebrackets = {}, {}
+snapshots = pd.to_datetime(snapshots).sort_values()
+
+# data classes
+@dataclass
+class DayType:
+    """
+    Represents a day-of-year range (year-agnostic).
+    Uses half-open interval [start, end).
+    """
+    month_start: int
+    day_start: int
+    month_end: int
+    day_end: int
+    name: str = field(default="")
+    
+@dataclass
+class DailyTimeBracket:
+    """
+    Represents a time-of-day range (day- and year-agnostic).
+    Uses half-open interval [start, end).
+    """
+    hour_start: dt_time
+    hour_end: dt_time
+    name: str = field(default="")
+```
+1. **Case 1**: `len(snapshots) < 2`
+```python
+# if one snapshot: one timeslice, representing whole year
+if len(snapshots) < 2:
+	years = sorted(snapshots.year.unique().tolist())
+	daytypes = [
+	        DayType(
+	            month_start=1,
+	            day_start=1,
+	            month_end=12,
+	            day_end=31,
+	            name="ALL-YEAR"
+	        )
+	    ]
+	dailytimebrackets = [
+	        DailyTimeBracket(
+	            hour_start=dt_time(0, 0, 0),
+	            hour_end=dt_time(23, 59, 59, 999999),
+	            name="ALL-DAY"
+	        )
+	    ]
+	# timeslices = daytype x dailytimebracket
+	# = {"FULL-YEAR, "FULL-DAY"}
+```
+2. create an array $\Delta(snapshots)$
+```python
+# create delta array
+delta = snapshots[1:] - snapshots[:-1]
+```
+2. **Case 2:** annual resolution or coarser
+```python
+min_delta_years = (delta / np.timedelta64(1, 'Y')).min()
+years = sorted(snapshots.year.unique().tolist())
+
+# if annual or coarser
+# 1 daytype per year, 1 dailytimebracket per day = 1 timeslice per year
+if min_delta_years >= 1:
+	daytypes.add(
+		DayType(
+			month_start=1,
+			day_start=1,
+			month_end=12,
+			day_end=31,
+			name="ALL-YEAR"
+		)
+	)
+    dailytimebrackets.add(
+		DailyTimeBracket(
+			hour_start=dt_time(0, 0, 0),
+			hour_end=dt_time(23, 59, 59, 999999),
+			name="ALL-DAY"
+		)
+	)
+    # timeslices = daytype x dailytimebracket
+	# = {"ALL-YEAR, "ALL-DAY"}
+```
+3. **Case 3:** daily resolution or coarser
+```python
+min_delta_days = (delta / np.timedelta64(1, 'D')).min()
+
+# if daily or coarser
+# k daytypes per year, 1 dailytimebracket per day = k timeslices per year
+
+# add year boundaries to discrete (month, day) tuples
+unique_month_days = sorted(set((ts.month, ts.day) for ts in snapshots))
+all_boundaries = [(1, 1)]  # start of year
+all_boundaries.extend(unique_month_days)
+if (12, 31) not in all_boundaries:
+		all_boundaries.append((12, 31)) # end of year
+all_boundaries = sorted(set(all_boundaries))
+
+# create discrete daytypes [start, end)
+for i in range(len(all_boundaries)-1):
+		start_month, start_day = all_boundaries[i]
+		end_month, end_day = all_boundaries[i + 1]
+		
+		daytype.add(DayType(
+			month_start=start_month,
+			day_start=start_day,
+			month_end=end_month,
+			day_end=end_day
+		))
+			
+if min_delta_days >= 1:
+	dailytimebrackets.add(
+		DailyTimeBracket(
+			hour_start=dt_time(0, 0, 0),
+			hour_end=dt_time(23, 59, 59, 999999),
+			name="ALL-DAY"
+		)
+	)
+	# timeslices = daytype x dailytimebracket
+	# = {D, "ALL-DAY"} for D in daytype
+```
+4. **Case 4:** sub-daily resolution
+```python
+# if subdaily
+# k daytypes per year, m dailytimebrackets per day = k*m timeslices per year
+
+# add day boundaries to discrete times
+unique_times = sorted(set(ts.time() for ts in snapshots))
+if dt_time(0, 0, 0) not in unique_times:
+	unique_times = [dt_time(0, 0, 0)] + unique_times
+
+# create discrete dailytimebrackets [start, end)
+for i in range(len(unique_times)):
+	start = unique_times[i]
+	if i + 1 < len(unique_times):
+		end = unique_times[i + 1]
+	else:
+		# Last bracket extends to end of day
+		end = dt_time(23, 59, 59, 999999)
+	
+	dailytimebrackets.add(
+		DailyTimeBracket(
+			hour_start=start,
+			hour_end=end
+		)
+	)
+# timeslices = daytype x dailytimebracket
+# = {D, H} for D in daytype for H in dailytimebracket
+```
+5. generate timeslices from `daytype` x `dailytimebracket` (note: `season` is empty)
+6. associate data from `snapshots` to the relevant `timeslice`
+7. fill empty `timeslices` with either default from config or forward-fill or some statistic for same dailytimebracket / daytype / year
+
+**Workflow 2: `timeslice` >> `snapshots`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
 ```python
-for s in seasons:
-	for d in datypes:
-		for t in dailytimebrackets:
+for s in sorted(seasons):
+	for d in sorted(daytypes):
+		for t in sorted(dailytimebrackets):
 			snapshots.append(timeslice[s][d][t])
 ```
+
+
+## Simulation
+1. Uniform, high resolution timeseries >> discrete, non-uniform `snapshots` (PyPSA)
+2. Uniform, high resolution timeseries >> discrete, non-uniform `timeslices` (OSeMOSYS)
 
 **Workflow 1: Discretization**
 *Aggregating continuous data into the most significant segments*
@@ -89,7 +251,7 @@ ML methods
 	- Cluster segment values into discrete symbols
 	- Results in discrete symbolic representation
 
-**Workflow 2 & 3: Factorization**
+**Workflow 2: Factorization**
 *Aggregating continuous data into the most hierarchical groups*
 Hierarchies: S `seasons`, D `daytypes`, T `dailytimebrackets`
 $S*D*T = N$ `timeslices` 
@@ -136,7 +298,7 @@ If `N` is prime and has no factors, $S = N, D = 1, T = 1$
 				  for k in range(T-1):
 					  # find best split by hour or temporal order
 					  # creates T timebrackets within (s, d)
-	  ```
+		```
 	- Interpretable, can enforce temporal contiguity  
 	- Greedy (doesn't find global optimum)
 5. Constrained Multi-level k-means
