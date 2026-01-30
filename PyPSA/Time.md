@@ -8,11 +8,13 @@
 **Workflow 1: `snapshots` >> `timeslice`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
 `snapshots`= `pd.DateTime()` or `pd.Index()`
-mapping: one `snapshot` maps to at least one `timeslice` but one `timeslice` may be generated from at most one `snapshot` (many to one)
-edge cases: may create some empty `timeslices`, particularly at the start and end, which may need to be intelligently filled (e.g. forward fill, default fill)
+mapping: one `snapshot` maps to at least one `timeslice`
+*does one `(year, timeslice)` map to at most one `snapshot`?*
+edge cases: may create some empty `timeslices`, particularly at the start and end, which may need to be intelligently filled (e.g. forward fill, default fill, callable aggregate by `year` / `season` / `datype` / `dailytimebracket`)
 ```python
 daytypes, dailytimebrackets = {}, {}
 snapshots = pd.to_datetime(snapshots).sort_values()
+years = sorted(snapshots.year.unique().tolist())
 
 # data classes
 @dataclass
@@ -41,8 +43,7 @@ class DailyTimeBracket:
 ```python
 # if one snapshot: one timeslice, representing whole year
 if len(snapshots) < 2:
-	years = sorted(snapshots.year.unique().tolist())
-	daytypes = [
+	daytypes.add(
 	        DayType(
 	            month_start=1,
 	            day_start=1,
@@ -50,14 +51,14 @@ if len(snapshots) < 2:
 	            day_end=31,
 	            name="ALL-YEAR"
 	        )
-	    ]
-	dailytimebrackets = [
+	    )
+	dailytimebrackets.add(
 	        DailyTimeBracket(
 	            hour_start=dt_time(0, 0, 0),
 	            hour_end=dt_time(23, 59, 59, 999999),
 	            name="ALL-DAY"
 	        )
-	    ]
+	    )
 	# timeslices = daytype x dailytimebracket
 	# = {"FULL-YEAR, "FULL-DAY"}
 ```
@@ -69,7 +70,6 @@ delta = snapshots[1:] - snapshots[:-1]
 2. **Case 2:** annual resolution or coarser
 ```python
 min_delta_years = (delta / np.timedelta64(1, 'Y')).min()
-years = sorted(snapshots.year.unique().tolist())
 
 # if annual or coarser
 # 1 daytype per year, 1 dailytimebracket per day = 1 timeslice per year
@@ -161,7 +161,7 @@ for i in range(len(unique_times)):
 ```
 5. generate timeslices from `daytype` x `dailytimebracket` (note: `season` is empty)
 6. associate data from `snapshots` to the relevant `timeslice`
-7. fill empty `timeslices` with either default from config or forward-fill or some statistic for same dailytimebracket / daytype / year
+7. fill empty `timeslices` with either default from config or forward-fill or some callable aggregation function for same dailytimebracket / daytype / year
 
 **Workflow 2: `timeslice` >> `snapshots`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
