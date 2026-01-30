@@ -161,7 +161,169 @@ for i in range(len(unique_times)):
 ```
 5. generate timeslices from `daytype` x `dailytimebracket` (note: `season` is empty)
 6. associate data from `snapshots` to the relevant `timeslice`
-7. fill empty `timeslices` with either default from config or forward-fill or some callable aggregation function for same dailytimebracket / daytype / year
+7. fill empty `timeslices` with either default from config or forward-fill or some callable aggregation function for same `dailytimebracket` / `daytype` / `year`
+
+## Example
+- irregular spacing
+- sub-daily resolution
+- multi-year
+```python
+snapshots = pd.DateTimeIndex(
+	[2020-01-02 08:00:00,
+	 2020-01-02 18:00:00,
+	 2020-01-03 06:00:00,
+	 2020-01-03 14:00:00,
+	 2020-01-03 22:00:00,
+	 2020-10-01 12:00:00,
+	 2021-06-01 09:00:00,
+	 2025-04-01 18:00:00]
+)
+```
+
+- find all unique `years`
+```python
+years = [2020, 2021, 2025] # all unique years in snapshots
+```
+- construct `dailytimebrackets` based on highest resolution of unique times
+	- note that these are half-open intervals
+	- we can calculate the number of hours represented by each `dailytimebracket`
+```python
+dailytimebrackets = [ # constructed from highest resolution across all days
+	00:00:00 - 06:00:00, # from start of day (= 6 hours)
+	06:00:00 - 08:00:00, # (= 2 hours)
+	08:00:00 - 09:00:00, # (= 1 hour)
+	09:00:00 - 12:00:00, # (= 3 hours)
+	12:00:00 - 14:00:00, # (= 2 hours)
+	14:00:00 - 18:00:00, # (= 4 hours)
+	18:00:00 - 22:00:00, # (= 4 hours)
+	22:00:00 - ENDOFDAY # to end of day (= 2 hours)
+] # (total = 24 hours)
+```
+- construct `daytypes` based on highest resolution of unique dates
+	- each date that appears in `snapshots` gets its own `daytype`
+	- each date not in `snapshots` is part of a `daytype` group
+	- note that these are closed intervals and they exclusively do not overlap
+	- we can calculate the average number of days represented by each `daytype`
+```python
+daytypes = [ # constructed from highest resolution across all years
+	01-01 - 01-01, # from start of year (= 1 day)
+	01-02 - 01-02, # (= 1 day)
+	01-03 - 01-03, # (= 1 day)
+	01-04 - 03-31, # (= 28+28.25+31 days)
+	04-01 - 04-01, # (= 1 day)
+	04-02 - 05-31, # (= 29+31 days)
+	06-01 - 06-01, # (= 1 day)
+	06-02 - 09-30, # (= 29+31+31+30 days)
+	10-01 - 10-01, # (= 1 day)
+	10-02 - 12-31 # to end of year (= 30+30+31 days)
+] # (total = 365.25 days)
+```
+- `timeslice` = `daytype` x `dailytimebracket` for each `year`
+	- we can calculate the average number of hours represented by each `timeslice`
+	- `len(timeslices) = len(daytypes) * len(dailytimebrackets)`
+	- note that each `timeslice` will inherit the half-open interval from its `dailytimebracket`
+	- this construction ensures that `timeslices` are AT LEAST as high in resolution as `snapshots`
+```python
+timeslices = [
+	# daytypes[0]
+	01-01 - 01-01 && 00:00:00 - 06:00:00, # (= 1*6 hours)
+	01-01 - 01-01 && 06:00:00 - 08:00:00, # (= 1*2 hours)
+	..., # repeat for each dailytimebracket
+	
+	# daytypes[1]
+	01-02 - 01-02 && 00:00:00 - 06:00:00, # (= 1*6 hours)
+	..., # repeat for each dailytimebracket
+	
+	# daytypes[2]
+	01-03 - 01-03 && 00:00:00 - 06:00:00, # (= 1*6 hours)
+	..., # repeat for each dailytimebracket
+	
+	# daytypes[3]
+	01-04 - 03-31 && 00:00:00 - 06:00:00, # (= 87.25*6 hours)
+	01-04 - 03-31 && 06:00:00 - 08:00:00, # (= 87.25*2 hours)
+	..., # repeat for each dailytimebracket
+	
+	..., # repeat for each daytype
+	]
+```
+- we assume `snapshots` represent data from [START, END)
+	- as `timeslices` cover the whole year, we need to add start-of-year and end-of-year bounds for all unique years in `snapshots`
+```python
+bounds = [
+	2020-01-01 00:00:00, # add start-of-year
+	2020-01-02 08:00:00,
+	2020-01-02 18:00:00,
+	2020-01-03 06:00:00,
+	2020-01-03 14:00:00,
+	2020-01-03 22:00:00,
+	2020-10-01 12:00:00,
+	2020-12-31 ENDOFDAY, # add end-of-year
+	2021-01-01 00:00:00, # add start-of-year
+	2021-06-01 09:00:00,
+	2021-12-31 ENDOFDAY, # add end-of-year
+	# skip 2022, 2023, 2024 as there are no snapshots for these years
+	2025-01-01 00:00:00, # add start-of-year
+	2025-04-01 18:00:00,
+	2025-12-31 ENDOFDAY # add end-of-year
+]
+```
+- based on this, we can figure out the data filling pattern
+	- data in `snapshots[0]` fills all times in [bounds[1], bounds[2])
+	- data in snapshots[1] fills all times in [bounds[2], bounds[3])
+	- ...
+	- data in snapshots[4] fills all times in [bounds[5], bounds[6])
+	- data in snapshots[5] fills all times in [bounds[6], bounds[7]) AND [bounds[7], bounds[8]) AND [bounds[8], bounds[9])
+	- data in snapshots[6] fills all times in [bounds[9], bounds[10]) AND [bounds[10], bounds[11]) AND [bounds[11], bounds[12])
+	- data in snapshots[7] fills all times in [bounds[12], bounds[13])
+	
+	note the half-open interval
+	we always assume that the last snapshot runs till the end of the final year
+	
+- based on bounds, we know how many hours each snapshot represents
+	- `snapshots[0]` fills 10 hours
+	- `snapshots[1]` fills 12 hours
+	- `snapshots[2]` fills 8 hours
+	- `snapshots[3]` fills 8 hours
+	- `snapshots[4]` fills 6518 hours
+	- `snapshots[5]` fills 5829 hours
+	- `snapshots[6]` fills 7305 hours
+	- `snapshots[7]` fills 6582 hours
+	
+	total hours represented: 26272
+
+- now we need an algorithm that matches the `snapshots` to the `timeslices`
+```python
+# create endpoints array by adding end of last year to snapshots
+endpoints = snapshots.append(datetime(snapshots[-1].year, 12, 31, ENDOFDAY))
+
+for i, e in enumerate(endpoints[:-1]):
+	# get lower and upper bounds
+	# note: il and iu may not be consecutive
+	il, iu = bounds.find(e), bounds.find(endpoints[i+1])
+	l, u = bounds[il], bounds[iu]
+	
+	idxs = [] # store indices of relevant timeslices
+	for j, ts in enumerate(timeslices):
+		# find all timeslices after lower and before upper
+		if datetime(l.year, ts[0]) >= l and datetime(u.year, ts[1]) <= u:
+			idxs.append(j)
+	
+	# check hours represented match with tolerance
+	# sum of timedeltas ensures we only count represented years
+	s_hours = sum(timedelta(bounds[il:iu][1:] - bounds[il:iu][:-1]))
+	ts_hours = sum([len(ts) for ts in timeslices[idxs]])
+	# timeslices are averaged over leap years
+	# in the worst case, we are off by 0.75 days * 24 hours * years in bounds
+	if abs(s_hours - ts_hours) > 0.75*24*(s_hours%365 + 1):
+		raise ValueError(f"Representation Mismatch! snapshot hours = {s_hours}, timeslice hours = {ts_hours}, timeslices = \n{timeslices[idxs]}") 
+```
+- therefore mappings have the following structures:
+	- note that each `snapshot` maps to at least one `timeslice`
+	- note that each `timeslice` maps from at least one `snapshot`
+```python
+snapshot_to_timeslice_index: Dict[int, List[int]]
+timeslice_to_snapshot_index: Dict[int, int]
+```
 
 **Workflow 2: `timeslice` >> `snapshots`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
