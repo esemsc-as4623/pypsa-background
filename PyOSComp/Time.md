@@ -328,12 +328,17 @@ timeslice_to_snapshot_index: Dict[int, int]
 **Workflow 2: `timeslice` >> `snapshots`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
 ```python
-for s in sorted(seasons):
-	for d in sorted(daytypes):
-		for t in sorted(dailytimebrackets):
-			snapshots.append(timeslice[s][d][t])
+idx = 0
+for y in years:
+	for s in sorted(seasons):
+		for d in sorted(daytypes):
+			for t in sorted(dailytimebrackets):
+				snapshots.append(y, timeslice[s][d][t])
+				snapshots[idx].weight = duration(timeslice[s][d][t])
+				idx += 1
 ```
-
+- snapshots created from timeslices should maintain hierarchical index (i.e. not represent actual datetimes to avoid confusion or misinterpretation)
+- for this reason, we don't need to allow backwards compatibility
 
 ## Simulation
 1. Uniform, high resolution timeseries >> discrete, non-uniform `snapshots` (PyPSA)

@@ -196,3 +196,65 @@ release disk space after building container images
 `docker builder prune -a`
 build a docker image without cache
 `docker build --no-cache -t my-image:latest .`
+
+```bash
+# container image is saved locally across multiple files
+docker save -o <FILENAME.tar> <IMAGE-NAME:TAG> # fast
+# save = pass your build as a container image
+docker save -o <IMAGE-NAME:TAG> | gzip <FILENAME.tar.gz> # slow; not all computers offer compression
+ls -lhtr <FILENAME.tar>
+# check file size; should be similar to container image size
+
+docker load -i <IMAGE-NAME>
+
+docker login -u <USERNAME>
+# build image
+docker image push <IMAGE-NAME:TAG>
+docker pull <USERNAME>/<IMAGE-NAME:TAG>
+```
+
+HPC exercise
+```bash
+module avail # check available modules
+module load singular/3.1.1 # load module
+# pull docker image
+singularity pull --name pypd_docker.simg docker://jianlianggao/pypd_docker:202106
+# or: singularity pull --disable-cache
+```
+compose PBS script (`singularity_test.pbs`)
+- path to data
+```json
+#PBS -l walltime=00:20:00
+
+#PBS -l select=1:ncpus=2:mem=8gb
+
+// for splitting code to run in paraelle
+#PBS -J <START>-<END>
+
+module load singular/3.1.1
+
+cd $PBS_O_WORKDIR
+
+singularity run -B <LOCAL-DIR>:<HOST-DIR> <IMAGE-FILE> <DATA-FILEPATH> <OUTPUT-DIR>
+// -B = to mount directory
+// singularity run -B ./:/data pypd_docker.simg /data/dataset/CW_example_data.csv /data/
+
+// sliced data example:
+// <DATA-FILEPATH> = /data/dataset/example_${PBS_ARRAY_INDEX}.csv
+// <OUTPUT-DIR> = /data/output${PBS_ARRAY_INDEX}/
+```
+submit job
+```bash
+qsub singularity_test.pbs
+qstat <JOB-ID> # to check status
+qstat -rt <job ID>[] # check status of parallel jobs
+singularity shell -C <IMAGE-NAME> # to debug in shell
+```
+- apptainer & HPC checklist
+	- rebuild image
+	- push to Docker Hub
+	- `singularity pull <DOCKERHUB-URL>` to download to HPC
+	- compose PBS script
+		- `WORKDIR`
+		- `ENTRYPOINT`
+- https://icl-rcs-user-guide.readthedocs.io/en/latest/hpc/applications/guides/openondemand/

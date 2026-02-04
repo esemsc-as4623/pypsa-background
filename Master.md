@@ -49,11 +49,12 @@
 - ***unit commitment*** = optimization problem where production of a set of generators is coordinated to meet demand at minimum cost; storing energy at scale is difficult and start-up / shut-down timeline requires notice but variation in consumption needs to be met
 
 # Conferences
-| Conference                      | Date               | Location        | Notes                                                                                                                                                          |
-| ------------------------------- | ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ABM4Energy 2026                 | 30-31 March 2026   | Vienna, Austria | Agent-Based Modelling for Energy Economics and Energy Policy<br>https://events.hifis.net/event/2964/overview                                                   |
-| Geilo Winter School x NAIC 2026 | 18-23 January 2026 | Geilo, Norway   | Uncertainty Quantification for Scientific Computing Intelligent Systems<br>https://www.sintef.no/projectweb/geilowinterschool/2026-uncertainty-quantification/ |
-| EGU2026                         | 3-8 May 2026       | Vienna, Austria | European Geosciences Union<br>https://www.egu26.eu/                                                                                                            |
+| Conference                      | Date               | Location           | Notes                                                                                                                                                          |
+| ------------------------------- | ------------------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ABM4Energy 2026                 | 30-31 March 2026   | Vienna, Austria    | Agent-Based Modelling for Energy Economics and Energy Policy<br>https://events.hifis.net/event/2964/overview                                                   |
+| Geilo Winter School x NAIC 2026 | 18-23 January 2026 | Geilo, Norway      | Uncertainty Quantification for Scientific Computing Intelligent Systems<br>https://www.sintef.no/projectweb/geilowinterschool/2026-uncertainty-quantification/ |
+| EGU2026                         | 3-8 May 2026       | Vienna, Austria    | European Geosciences Union<br>https://www.egu26.eu/                                                                                                            |
+| OSES2026                        | 8-10 July 2026     | Delft, Netherlands | Offshore Energy and Storage Society<br>https://www.osessociety.com/oses2026                                                                                    |
 
 # Companies
 - Resources for the Future -- think tank in Washington DC
