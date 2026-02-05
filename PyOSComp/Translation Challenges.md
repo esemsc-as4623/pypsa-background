@@ -23,11 +23,11 @@
 | Availability vs Capacity Factor | Separate AvailabilityFactor[r,t,y] (annual) and CapacityFactor[r,t,l,y] (per timeslice) | Combined in p_max_pu time series                            | OSeMOSYS distinguishes planned outages (availability) from instantaneous capacity limits |
 ### Investment Timing and Multi-Period Structure
 
-|**Concept**|**OSeMOSYS**|**PyPSA**|**Translation Challenge**|
-|---|---|---|---|
-|Multi-year investment|Native multi-year optimization over YEAR set with endogenous capacity expansion|Originally single-period dispatch; capacity expansion requires extensions (e.g., pypsa.optimize.create_model with multi-invest or external frameworks)|Comparing like-for-like requires careful scoping of investment vs operational decisions|
-|Investment timing within year|Investment at year boundary; capacity available for full year|Investment typically for a single representative operational period|Different treatment of when capacity becomes available|
-|Residual capacity|Explicit ResidualCapacity[r,t,y] parameter for pre-existing assets|Handled through p_nom with p_nom_extendable=False|Conceptually similar but different parameterization|
+| **Concept**                   | **OSeMOSYS**                                                                    | **PyPSA**                                                                                                                                              | **Translation Challenge**                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Multi-year investment         | Native multi-year optimization over YEAR set with endogenous capacity expansion | Originally single-period dispatch; capacity expansion requires extensions (e.g., pypsa.optimize.create_model with multi-invest or external frameworks) | Comparing like-for-like requires careful scoping of investment vs operational decisions |
+| Investment timing within year | Investment at year boundary; capacity available for full year                   | Investment typically for a single representative operational period                                                                                    | Different treatment of when capacity becomes available                                  |
+| Residual capacity             | Explicit ResidualCapacity[r,t,y] parameter for pre-existing assets              | Handled through p_nom with p_nom_extendable=False                                                                                                      | Conceptually similar but different parameterization                                     |
 ### Offshore-Specific Edge Cases
 
 | **Scenario**                                        | **OSeMOSYS Behavior**                                                                                             | **PyPSA Behavior**                                                          | **Implication**                                   |

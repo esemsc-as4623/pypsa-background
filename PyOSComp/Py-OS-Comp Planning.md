@@ -1,6 +1,6 @@
 #pypsa #osemosys #benchmark 
 
-# PyPSA Features Not Translated to OSeMOSYS
+## PyPSA Features Not Translated to OSeMOSYS
 
 1. Reactive Power (q) Modeling
 	- Reactive power variables `q` for all components (Generator, Load, Line, Transformer)
@@ -74,7 +74,7 @@
 	- Investment period "years" elapsed time specification
 	**Translation Approach**: PyPSA investment periods map to OSeMOSYS YEAR set entries. Investment weightings are **approximated** via DiscountRate and year spacing, but full control over investment period objective weights is not preserved.
 
-# Translation Status
+## Translation Status
 This section documents which PyPSA components and parameters are handled in the **pyoscomp** translation framework for generating OSeMOSYS-compatible datasets. Translation follows the phased Implementation Plan with foundational research complete and translation layer implementation in progress.
 ### Status Legend
 - ✓ **Implemented**: Translation logic fully operational
