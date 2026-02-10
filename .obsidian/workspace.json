@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Meetings/2026-01-22.md",
+                "file": "PyOSComp/Py-OS-Comp TODO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-22"
+              "title": "Py-OS-Comp TODO"
             }
           },
           {
@@ -200,15 +200,16 @@
   },
   "active": "d9ac015087873c33",
   "lastOpenFiles": [
-    "Meetings/2026-02-04.md",
     "Meetings/2026-02-05.md",
+    "Meetings/2026-02-04.md",
+    "Meetings/2026-01-22.md",
     "Master.md",
     "Lit/Frysztacki et al., 2021.md",
     "Lit/DeCarolis, 2011.md",
     "Lit/Groissboeck, 2019.md",
     "PyOSComp/Time.md",
     "PyOSComp/Py-OS-Comp Planning.md",
-    "PyOSComp/Py-OS-Comp Code Improvements.md",
+    "PyOSComp/Py-OS-Comp TODO.md",
     "PyOSComp/Translation Challenges.md",
     "PyPSA/PyPSA vs OSeMOSYS.md",
     "PyPSA/PyPSA-EUR Outputs.md",
@@ -219,7 +220,6 @@
     "PyOSComp",
     "Misc/Intro to Containers Notes.md",
     "OSES2026.md",
-    "Meetings/2026-01-22.md",
     "PyPSA/Py-OS-Comp Planning.md",
     "PyPSA/Py-OS-Comp Code Improvements.md",
     "Research Avenues.md",
