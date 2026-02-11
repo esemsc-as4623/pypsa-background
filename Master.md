@@ -47,6 +47,7 @@
 - ***load duration curve*** = describes the number of hours in the year that load was greater than or equal to a given level
 - ***merit order dispatch rule*** = in order of increasing variable cost, assigns technologies to load blocks of decreasing duration until either all load blocks are satisfied or all generating capacity is exhausted
 - ***unit commitment*** = optimization problem where production of a set of generators is coordinated to meet demand at minimum cost; storing energy at scale is difficult and start-up / shut-down timeline requires notice but variation in consumption needs to be met
+- ***Markov decision process*** = process to model sequential decision-making under uncertainty (agent makes decisions --> environment responds probabilistically --> outcome depends only on current state (Markov property) --> goal is to maximize cumulative reward over time); can be fully observable (i.e. agent observes true state), partially observable (i.e. agent observes only partial info and maintains belief state), finite/continuous in action space, model-based (i.e. known transition and reward functions solved w/ dynamic programming), or model free (i.e. learn with interaction, e.g. Q-learning, SARSA)
 
 # Conferences
 | Conference                      | Date               | Location           | Notes                                                                                                                                                          |
