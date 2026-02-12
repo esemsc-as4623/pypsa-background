@@ -26,3 +26,4 @@
 - [[Karpathy Decade of Agents]]
 - [[Algorithms to Live By]]
 - [[Terrence Tao on The Future of Mathematics]]
+- [[NVIDIA Robotics Day 2026]]

@@ -43,3 +43,19 @@
 - assumptions may be biased by the view of individual or institution
 - unclear cause-effect relationships
 - black box models are not validated; different models produce different insights; models lack practical view (too theoretical)
+- perfect foresight = assume that everything is known and optimize deterministically; BUT, we have
+	- demand uncertainty
+	- fuel price volatility
+	- technology learning uncertainty
+	- policy changes
+	- climate variability
+	- extreme weather events
+
+1. Markov Decision Process
+	- sequential, adaptive, uncertain, path-dependent
+	- state = installed capacity, demand, fuel price, carbon price, technology cost, storage levels, grid constraints, climate conditions
+	- actions = investment and operational decisions (build, retire, invest, expand, implement demand response, etc.)
+	- transition model = represent demand evolution, fuel price dynamics, technology learning curves, policy shifts, weather patterns
+	- reward = social welfare - system cost - emissions damage
+	- discount factor = represent time preference, intergenerational equity, social discount rate
+	- output = contingent strategies (e.g. if gas prices rise, build renewables faster; if demand stagnates, delay nuclear; if storage cost drops, accelerate electrification)
