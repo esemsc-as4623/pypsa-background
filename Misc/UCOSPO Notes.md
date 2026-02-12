@@ -1,4 +1,4 @@
-## FAIR Research Software
+### FAIR Research Software
 - Findable
 	- software metadata (DOI, citation.cff, version, metadata)
 - Accesible
@@ -82,4 +82,103 @@ Other GitHub automations
 - CODE_OF_CONDUCT.md = behavioral rules
 - CHANGELOG.md = version history
 - template: https://github.com/UC-OSPO-Network/templates
-## 
+### Raspberry Pi and Sense HAT
+Raspberry Pi
+- runs Linux OS
+- code
+- build robots
+- create media center or retro arcade
+- home automation
+
+getting started
+- choose model
+- microSD + OS
+- power supply
+- HDMI
+- monitor, keyboard, mouse
+
+resources
+- instructables
+- official website
+- MagPi magazine (monthly newsletter)
+- workshops
+- youtube tutorials
+- AstroPi
+
+Sense HAT (connect to Raspberry Pi)
+- 8x8 RGB LED Matrix
+- gyroscope, accelerometer, magnetometer
+- temperature, humidity sensor
+- barometric pressure sensor
+- mini joystick
+
+Emulator: https://trinket.io/sense-hat
+- `show_message()`
+```python
+from sense_hat import SenseHat
+sense = SenseHat()
+sense.show_message("Hello World!")
+```
+- `set_pixel()`
+```python
+from sense_hat import SenseHat
+from time import sleep
+
+sense = SenseHat()
+red = (255, 0, 0)
+sense.clear(red)
+sleep(1)
+sense.clear()
+sense.set_pixel(4, 5, red) # 4 from L-R, 5 from T-B
+sleep(1)
+
+sense.show_message("Red", text_colour=[255, 0, 0])
+```
+- `set_pixels()`
+```python
+from sense_hat import SenseHat
+sense = SenseHat()
+
+r = (255, 0, 0) # red
+w = (255, 255, 255) # white
+
+smile = [
+	w, w, w, w, w, w, w, w,
+	w, w, w, w, w, w, w, w,
+	w, w, r, w, w, r, w, w,
+	w, w, w, w, w, w, w, w,
+	w, r, w, w, w, w, r, w,
+	w, w, r, r, r, r, w, w,
+	w, w, w, w, w, w, w, w,
+	w, w, w, w, w, w, w, w
+]
+sense.set_pixels(smile)
+```
+- orientation
+	- pitch axis = y-axis (point N, right-hand rule)
+	- roll axis = x-axis (point W, right-hand rule)
+	- yaw axis = z-axis (point to you, left-hand rule
+```python
+from sense_hat import SenseHat
+sense = SenseHat()
+
+data = sense.get_orientation()
+pitch = str(data['pitch'])
+sense.show_message(pitch)
+```
+- `get_humidity()`, `clear()`
+```python
+from sense_hat import SenseHat
+from time import sleep
+sense = SenseHat()
+
+while True:
+	humidity = sense.get_humidity()
+	# get_temperature()
+	# get_pressure()
+	if humidity > 35:
+		sense.clear(255, 0, 0) # set all pixels
+	else:
+		sense.clear(0, 0, 255)
+	sleep(0.1)
+```
