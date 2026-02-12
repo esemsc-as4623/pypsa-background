@@ -1,5 +1,7 @@
 ## Repo Management
 - Choose A License: www.choosealicense.com, https://creativecommons.org/choose/
+- Write a Citation.cff: https://citation-file-format.github.io/cff-initializer-javascript/#/
+- Awesome READMEs: https://github.com/matiassingers/awesome-readme
 ## Learning
 - Imperial Research Computing & Data Science (https://github.com/ImperialCollegeLondon/RCDS-materials?tab=readme-ov-file)
 	- Command line for scientific computing: https://github.com/ImperialCollegeLondon/RCDS-comm-line
@@ -11,6 +13,11 @@
 - Operations Research: https://ap-rg.eu/courses/operations-research-linma-2491/
 - Mixed Integer Programming: https://www.youtube.com/@mixedintegerprogramming/videos [[Mixed Integer Programming Notes]]
 - Optimization4All: https://optimization4all.com/ [[Open Source Solvers]]
+- UC Open Source Program Office: https://ucospo.net/oss-resources/ [[UCOSPO Notes]]
+	- Carpentry Inventory: https://docs.google.com/spreadsheets/d/1JqM5OYX4f-T0jR-GJ5UeI7PnGJP6o4jtPRNtDJUGPmI/edit?pli=1&gid=1792935546#gid=1792935546
+	- Zenodo: https://zenodo.org/communities/ucldw/records?q=&l=list&p=4&s=10&sort=newest
+- PyOpenSci: https://www.pyopensci.org/python-package-guide/index.html
+- PyPSA Training Sessions: https://github.com/open-energy-transition/pypsa-training-sessions
 ## Research
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
