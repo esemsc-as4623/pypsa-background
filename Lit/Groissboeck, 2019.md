@@ -1,6 +1,6 @@
 #pypsa #osemosys 
 
-https://www.sciencedirect.com/science/article/pii/S1364032118307743?pes=vor&utm_source=clarivate&getft_integrator=clarivate#bib49
+https://www.sciencedirect.com/science/article/abs/pii/S1364032118307743
 
 unfulfilled functions in a single model
 - distinguish between hot and cold startups or number of starts per day
