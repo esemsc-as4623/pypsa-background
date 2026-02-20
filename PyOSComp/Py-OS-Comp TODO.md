@@ -1,6 +1,7 @@
 #pypsa #osemosys #benchmark 
 
 Priority TODO:
-1. add back visualization module
-2. test suite for scenario components
-3. schema enforcement upon reading data files
+0. scenario --> interfaces --> runner (OSeMOSYS)
+1. what is the plan for PyPSA translation (i.e. where does it live?)
+2. add back visualization module
+3. storage
