@@ -214,7 +214,7 @@ This section documents which PyPSA components and parameters are handled in the 
 - **User-specified**: Custom mapping for specific modeling needs
 ### Implementation Notes
 
-**Phase 4 (In Progress)**: Translation layer orchestrates component usage to convert PyPSA Network objects to OSeMOSYS CSV datasets. Key tasks:
+Translation layer orchestrates component usage to convert PyPSA Network objects to OSeMOSYS CSV datasets. Key tasks:
 - Bus→REGION, Carrier→FUEL, timeslice aggregation framework
 - Generator, Load, StorageUnit, Link translation with decomposition logic
 - Economics integration with unit conversion validation
