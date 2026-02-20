@@ -18,6 +18,7 @@
 	- Zenodo: https://zenodo.org/communities/ucldw/records?q=&l=list&p=4&s=10&sort=newest
 - PyOpenSci: https://www.pyopensci.org/python-package-guide/index.html
 - PyPSA Training Sessions: https://github.com/open-energy-transition/pypsa-training-sessions
+- NVIDIA DLI: Model Parallelism [[NVIDIA Model Parallelism Notes]]
 ## Research
 - [[Search Terms]]: list of relevant concepts, terminology, etc to augment literature review
 - [[Information Retrieval]]: sources and guidance from Imperial workshop
@@ -27,3 +28,4 @@
 - [[Algorithms to Live By]]
 - [[Terrence Tao on The Future of Mathematics]]
 - [[NVIDIA Robotics Day 2026]]
+- [[EF Company Building 101]]
