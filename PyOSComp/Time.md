@@ -3,7 +3,7 @@
 ## Translation
 
 1. Discrete, non-uniform `snapshots` (PyPSA) >> discrete, non-uniform `timeslices` (OSeMOSYS)
-2. Discrete non-uniform `timeslices` (OSeMOSYS) >> discrete, non-uniform `snapshots` (PyPSA)
+2. Discrete, non-uniform `timeslices` (OSeMOSYS) >> discrete, non-uniform `snapshots` (PyPSA)
 
 **Workflow 1: `snapshots` >> `timeslice`**
 `timeslice` = `season` x `daytype` x `dailytimebracket`
