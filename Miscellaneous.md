@@ -29,3 +29,4 @@
 - [[Terrence Tao on The Future of Mathematics]]
 - [[NVIDIA Robotics Day 2026]]
 - [[EF Company Building 101]]
+- [[Neural Operators]]
