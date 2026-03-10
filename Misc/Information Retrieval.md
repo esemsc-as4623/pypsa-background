@@ -8,4 +8,3 @@ Tools
 
 Accessing online resources from outside Imperial: https://www.imperial.ac.uk/admin-services/library/find-books-articles-and-more/passwords-and-working-off-site/
 - Library Search: https://library-search.imperial.ac.uk/discovery/search?vid=44IMP_INST:ICL_VU1
-

@@ -30,3 +30,4 @@
 - [[NVIDIA Robotics Day 2026]]
 - [[EF Company Building 101]]
 - [[Neural Operators]]
+- [[GTA Training]]
